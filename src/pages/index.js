@@ -1,8 +1,8 @@
-import Head from 'next/head'
+import Head from 'next/head' //imports
 import Image from 'next/image'
 import React, { useState } from 'react'
-import Teams from '../components/Teams'
-import styles from '../../styles/Home.module.css'
+import Teams from '../components/Teams' //import teams
+import styles from '../../styles/Home.module.css' //styles
 
 export default function Home() {
   // react 'hooks' useState, useEffect
