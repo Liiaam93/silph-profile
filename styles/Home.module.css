@@ -1,18 +1,22 @@
-.layout {
-  border: solid black 2px;
-  display: flex;
-  width: 592px;
-  margin: auto;
-  flex-wrap: wrap;
-  text-align: center;
+.main {
   background-color: grey;
 }
-.main {
-align-items: center;
-text-align: center;
-box-sizing: content-box;
-  background-color: rgb(184, 181, 194);
-  padding: 5px;
-  box-sizing: content-box;
-  margin: auto;
+
+.load {
+  font-size: x-large;
+  animation: change 3s;
+}
+@keyframes change {
+  0% {
+    color: red;
+  }
+  25% {
+    color: yellow;
+  }
+  50% {
+    color: blue;
+  }
+  100% {
+    color: green;
+  }
 }

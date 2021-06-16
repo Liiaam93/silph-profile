@@ -1,8 +1,8 @@
-import Head from 'next/head' //imports
-import Image from 'next/image'
-import React, { useState } from 'react'
-import Teams from '../components/Teams' //import teams
-import styles from '../../styles/Home.module.css' //styles
+import Head from "next/head"; //imports
+import Image from "next/image";
+import React, { useState } from "react";
+import Teams from "../components/Teams"; //import teams
+import styles from "../../styles/Home.module.css"; //styles
 
 export default function Home() {
   // react 'hooks' useState, useEffect
@@ -16,7 +16,7 @@ export default function Home() {
     const json = await req.json();
     setTeams(json);
     setLoading(false);
-  }
+  };
 
   return (
     <div className={styles.main}>
@@ -26,18 +26,18 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main className={styles.container}>
-        <div className={styles.headban}>
-        <input value={player} onChange={(e) => setPlayer(e.target.value)} />
-        <button onClick={() => loadPeople()}>Load</button>
-        {
-          loading && <div>LOADING</div>
-        }
+      <main className={styles.main}>
+        <h1>Silph Team Finder</h1>
+        <br />
+        <div>
+          <input value={player} onChange={(e) => setPlayer(e.target.value)} />
+          <button onClick={() => loadPeople()}>Load</button>
+          {loading && <div className={styles.load}>LOADING</div>}
         </div>
-        <div className={styles.layout}><Teams teams={teams} />
+        <div className={styles.teams}>
+          <Teams teams={teams} />
         </div>
-
       </main>
     </div>
-  )
+  );
 }
