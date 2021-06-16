@@ -1,6 +1,7 @@
-import React from "react";
+import React from "react"; // react dependencies
 
 const Teams = ({ teams }) => {
+  // create Teams component
   return teams.map((team, index) => (
     <React.Fragment key={index}>
       <br />{" "}
