@@ -27,6 +27,7 @@ img {
   align-content: flex-start;
   border: solid black 2px;
   width: auto;
+  max-width: 800px;
   margin: auto;
   background-color: rgb(202, 90, 90);
 }
