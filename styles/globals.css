@@ -45,3 +45,9 @@ h1 {
 .load {
   font-size: x-large;
 }
+.bout {
+position: absolute;
+z-index: -1;
+color: white;
+  
+}

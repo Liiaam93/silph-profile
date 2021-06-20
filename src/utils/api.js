@@ -52,7 +52,7 @@ export const getSilph = async (player) => {
 
     const teams = [];
     let j = 0;
-    for (let i = 0; i < 5; i++) {
+    for (let i = 0; i < 6; i++) {
       const team = [];
       for (j; j < (i + 1) * 6; j++) {
         team.push({
@@ -63,7 +63,33 @@ export const getSilph = async (player) => {
       teams.push(team);
     }
 
-    return teams;
+    Array.prototype.byCount= function(){
+      var itm, a= [], L= this.length, o= {};
+      for(var i= 0; i<L; i++){
+          itm= this[i];
+          if(!itm) continue;
+          if(o[itm]== undefined) o[itm]= 1;
+          else ++o[itm];
+      }
+      for(var p in o) a[a.length]= p;
+      return a.sort(function(a, b){
+          return o[b]-o[a];
+      });
+  }
+
+    let common = pokemon.byCount()
+    let commonS = sprite.byCount()
+
+    const popular = [{bout:'Most Frequently Used Pokemon'}]
+    for(let k = 0; k < 6; k++){
+      popular.push({
+        pokemon: common[k],
+        sprite: commonS[k],
+      })
+    }
+    teams.push(popular)
+console.log(teams[6]);
+    return teams
   } catch (err) {
     console.log(err.message);
   }

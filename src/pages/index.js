@@ -4,11 +4,13 @@ import React, { useState } from "react";
 import Teams from "../components/Teams"; //import teams
 import styles from "../../styles/Home.module.css"; //styles
 
+
 export default function Home() {
   // react 'hooks' useState, useEffect
   const [teams, setTeams] = useState([]);
   const [player, setPlayer] = useState("Player Name");
   const [loading, setLoading] = useState(false);
+
 
   const loadPeople = async () => {
     setLoading(true);
@@ -36,6 +38,7 @@ export default function Home() {
         </div>
         <div className={styles.teams}>
           <Teams teams={teams} />
+
         </div>
       </main>
     </div>
