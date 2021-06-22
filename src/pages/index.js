@@ -1,26 +1,27 @@
 import Head from "next/head"; //imports
 import Image from "next/image";
 import React, { useState } from "react";
-import Teams from "../components/Teams"; //import teams
+import Teams from "../components/Teams"; //import teams component
 import styles from "../../styles/Home.module.css"; //styles
 
-
 export default function Home() {
+  // home func - where does this get called?
   // react 'hooks' useState, useEffect
-  const [teams, setTeams] = useState([]);
-  const [player, setPlayer] = useState("Player Name");
-  const [loading, setLoading] = useState(false);
-
+  const [teams, setTeams] = useState([]); //declare variable 'teams' - sets state?
+  const [player, setPlayer] = useState("Player Name"); // declare player variable, user input
+  const [loading, setLoading] = useState(false); // declare load variable, set state to false
 
   const loadPeople = async () => {
-    setLoading(true);
-    const req = await fetch(`/api/player/${player}`);
-    const json = await req.json();
-    setTeams(json);
-    setLoading(false);
+    // declare function loadPeople
+    setLoading(true); // load = true
+    const req = await fetch(`/api/player/${player}`); // fetch api using player variable
+    const json = await req.json(); // json
+    setTeams(json); // 'teams' variable is now json
+    setLoading(false); // loading = false/done
   };
 
   return (
+    // return html ....
     <div className={styles.main}>
       <Head>
         <title>Liam</title>
@@ -38,7 +39,6 @@ export default function Home() {
         </div>
         <div className={styles.teams}>
           <Teams teams={teams} />
-
         </div>
       </main>
     </div>
