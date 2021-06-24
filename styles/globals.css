@@ -14,6 +14,8 @@ a {
 }
 
 img {
+  width: 96px;
+  height: 96px;
   border: 1px black solid;
   border-radius: 50%;
   background-color: rgba(129, 136, 136, 0.548);
@@ -30,6 +32,7 @@ img {
   max-width: 800px;
   margin: auto;
   background-color: rgb(202, 90, 90);
+  padding-top: 50px;
 }
 .child {
   flex: 0 0 auto;
@@ -46,8 +49,7 @@ h1 {
   font-size: x-large;
 }
 .bout {
-position: absolute;
-z-index: -1;
-color: white;
-  
+  position: absolute;
+  color: white;
+  margin-top: -30px;
 }

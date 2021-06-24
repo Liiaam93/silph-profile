@@ -20,7 +20,23 @@ export const getSilph = async (player) => {
       .find("img")
       .toArray()
       .map((element) => $(element).attr("src"));
+    for (let i = 0; i < 6; i++) {
+      sprite.push(
+        "https://cdn.iconscout.com/icon/premium/png-256-thumb/pokeball-games-video-casino-gamer-1-42381.png"
+      );
+    }
+
     //console.log(sprite)
+    const cupInfo = $(
+      "#networkAndAchievements > div.arenaHistory.cardBlock > div.content > div.display.bouts > div.tournament > div > div.overview"
+    )
+      .find("h5")
+      .toArray()
+      .map((element) => $(element).text());
+
+    let boutNum = cupInfo.filter(function (el, index) {
+      return index % 2 === 1;
+    });
 
     function removeShadow() {
       for (let i = sprite.length - 1; i >= 0; i--) {
@@ -50,17 +66,20 @@ export const getSilph = async (player) => {
       }
     }
 
-    const teams = [];
+    const teams = []; // teams array
     let j = 0;
-    for (let i = 0; i < 6; i++) {
-      const team = [];
+    for (let i = 0; i < 7; i++) {
+      // loops 7 times (7 teams)
+      const team = []; // team array
       for (j; j < (i + 1) * 6; j++) {
+        // loops 42 times (7 teams * 6 pokemon)
         team.push({
+          bout: boutNum[i],
           pokemon: pokemon[j],
           sprite: sprite[j],
         });
       }
-      teams.push(team);
+      teams.push(team); //push each team into teams array
     }
 
     Array.prototype.byCount = function () {
@@ -82,16 +101,23 @@ export const getSilph = async (player) => {
 
     let common = pokemon.byCount();
     let commonS = sprite.byCount();
+    var cmn = commonS.filter(function (spr) {
+      return (
+        spr !==
+        "https://cdn.iconscout.com/icon/premium/png-256-thumb/pokeball-games-video-casino-gamer-1-42381.png"
+      );
+    });
 
-    const popular = [{ bout: "Most Frequently Used Pokemon" }];
+    const popular = [];
     for (let k = 0; k < 6; k++) {
       popular.push({
+        bout: "Most Frequently Used Pokemon",
         pokemon: common[k],
-        sprite: commonS[k],
+        sprite: cmn[k],
       });
     }
     teams.push(popular);
-    console.log(teams[6]);
+    console.log(teams[7]);
     return teams;
   } catch (err) {
     console.log(err.message);

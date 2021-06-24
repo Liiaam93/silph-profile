@@ -8,12 +8,11 @@ const Teams = ({ teams }) => {
       <div class="container">
         {team.map((pokemon) => (
           <React.Fragment key={pokemon.pokemon}>
-            <div class="bout">{pokemon.bout}</div>
+            <br /> <div class="bout">{pokemon.bout}</div>
             <div class="child">
               <img src={pokemon.sprite} />
               <p>{pokemon.pokemon}</p>
             </div>
-            
           </React.Fragment>
         ))}
       </div>
