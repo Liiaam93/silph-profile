@@ -1,22 +1,34 @@
-import Head from "next/head"; //imports
+import Head from "next/head";
 import Image from "next/image";
-import React, { useState } from "react";
+import React, { useState } from "react"; //use state
 import Teams from "../components/Teams"; //import teams component
-import styles from "../../styles/Home.module.css"; //styles
+import styles from "../../styles/Home.module.css";
+import Stats from "../components/Stats"; //import teams component
+
 
 export default function Home() {
-  // home func - where does this get called?
   // react 'hooks' useState, useEffect
   const [teams, setTeams] = useState([]); //declare variable 'teams' - sets state?
+  const [stats, setStats] = useState([])
+  const [teamName, setTeamName] = useState("Team Name");
   const [player, setPlayer] = useState("Player Name"); // declare player variable, user input
   const [loading, setLoading] = useState(false); // declare load variable, set state to false
+
+  const loadTeam = async () => {
+    // declare function loadPeople
+    setLoading(true); // load = true
+    const req = await fetch(`/api/teamName/${teamName}`); // fetch api using player variable
+    const json = await req.json(); // json
+    setStats(json); // 
+    setLoading(false); // loading = false/done
+  }
 
   const loadPeople = async () => {
     // declare function loadPeople
     setLoading(true); // load = true
     const req = await fetch(`/api/player/${player}`); // fetch api using player variable
     const json = await req.json(); // json
-    setTeams(json); // 'teams' variable is now json
+    setTeams(json); // 
     setLoading(false); // loading = false/done
   };
 
@@ -32,6 +44,11 @@ export default function Home() {
       <main className={styles.main}>
         <h1>Silph Team Finder</h1>
         <br />
+        <div>
+          <select>
+            <option value={teamName}></option>
+          </select>
+        </div>
         <div>
           <input value={player} onChange={(e) => setPlayer(e.target.value)} />
           <button onClick={() => loadPeople()}>Load</button>
