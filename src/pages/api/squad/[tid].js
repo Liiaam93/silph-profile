@@ -1,7 +1,7 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 
-import { getSilph } from "../../../utils/api";
+import { getTeam } from "../../../utils/squadapi";
 export default async (req, res) => {
-  const details = await getSilph(req.query.id);
+  const details = await getTeam(req.query.tid);
   res.status(200).json(details);
 };
