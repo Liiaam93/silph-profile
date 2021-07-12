@@ -64,9 +64,9 @@ export const getTeam = async (team) => {
       }
       playerStats.push(team);
     }
-    let isit = { playerStats, teamStats };
-    console.log(isit.playerStats.Player);
-    return teamStats;
+    let squad = { playerStats, teamStats };
+    console.log(squad.playerStats.player);
+    return squad;
   } catch (err) {}
 };
 

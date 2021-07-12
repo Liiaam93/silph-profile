@@ -1,9 +1,16 @@
 import React from "react";
 
-const Squads = ({}) => {
+const Squads = ({ squad }) => {
+  console.log(squad);
+
   return (
     <React.Fragment>
-      <img src={teamStats.logo} />
+      <br />
+      <img src={squad[playerStats].player} />
+      <br />
+      {squad.teamStats}
+      <br />
+      {squad.teamStats}
     </React.Fragment>
   );
 };
