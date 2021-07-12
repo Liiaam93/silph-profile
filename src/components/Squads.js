@@ -1,6 +1,6 @@
 import React from "react";
 
-const Squads = ({ teamStats }) => {
+const Squads = ({}) => {
   return (
     <React.Fragment>
       <img src={teamStats.logo} />
