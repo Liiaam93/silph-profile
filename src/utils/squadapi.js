@@ -39,9 +39,9 @@ export const getTeam = async (team) => {
 
     const teamStats = [
       {
-        Name: teamName,
-        Logo: sprite,
-        WL: winLoss,
+        name: teamName,
+        logo: sprite,
+        wl: winLoss,
       },
     ];
 
@@ -51,12 +51,12 @@ export const getTeam = async (team) => {
       const team = [];
       for (j; j < i + 1; j++) {
         team.push({
-          Player: players[j],
-          Role: role[j],
-          Score: score[j],
-          Matches: matches[j],
-          Total_Battles: parseInt(matches[j]) * 3,
-          Win_Rate:
+          player: players[j],
+          role: role[j],
+          score: score[j],
+          matches: matches[j],
+          total_battles: parseInt(matches[j]) * 3,
+          win_rate:
             ((parseInt(score[j]) / (parseInt(matches[j]) * 3)) * 100).toFixed(
               2
             ) + "%",
@@ -66,7 +66,7 @@ export const getTeam = async (team) => {
     }
     let isit = { playerStats, teamStats };
     console.log(isit.playerStats.Player);
-    return isit;
+    return teamStats;
   } catch (err) {}
 };
 

@@ -1,20 +1,9 @@
-import React from "react"; // react dependencies
-import { getTeam } from "../utils/squadapi";
+import React from "react";
 
-const Squads = () => {
-  let data = getTeam();
-  let name = data.teamStats.Name;
+const Squads = ({ teamStats }) => {
   return (
     <React.Fragment>
-      <br />{" "}
-      <div class="container">
-        <React.Fragment>
-          <br /> <div class="bout">{name}</div>
-          <div class="child"></div>
-        </React.Fragment>
-        ))
-      </div>
-      <br />
+      <img src={teamStats.logo} />
     </React.Fragment>
   );
 };
