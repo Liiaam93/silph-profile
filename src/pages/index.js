@@ -1,13 +1,15 @@
-import Head from "next/head"; //imports
+import Head from "next/head";
 import Image from "next/image";
-import React, { useState } from "react";
+import React, { useState } from "react"; //use state
 import Teams from "../components/Teams"; //import teams component
 import styles from "../../styles/Home.module.css";
-import Squads from "../components/Squads"; //import teams component
+import Stats from "../components/Stats"; //import teams component
 
 export default function Home() {
   // react 'hooks' useState, useEffect
-  const [teams, setTeams] = useState([]); //declare variable 'teams' - sets state as arr?
+  const [teams, setTeams] = useState([]); //declare variable 'teams' - sets state?
+  const [stats, setStats] = useState([]);
+  const [teamName, setTeamName] = useState("Team Name");
   const [player, setPlayer] = useState("Player Name"); // declare player variable, user input
   const [loading, setLoading] = useState(false); // declare load variable, set state to false
   const [squad, setSquad] = useState("9a7059e278");
@@ -20,11 +22,20 @@ export default function Home() {
     setLoading(false);
   };
 
+  const loadTeam = async () => {
+    // declare function loadPeople
+    setLoading(true); // load = true
+    const req = await fetch(`/api/teamName/${teamName}`); // fetch api using player variable
+    const json = await req.json(); // json
+    setStats(json); //
+    setLoading(false); // loading = false/done
+  };
+
   const loadPeople = async () => {
     setLoading(true);
     const req = await fetch(`/api/player/${player}`); // fetch api using player variable
     const json = await req.json(); // json
-    setTeams(json); // 'teams' variable is now json
+    setTeams(json); //
     setLoading(false); // loading = false/done
   };
 
