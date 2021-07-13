@@ -6,7 +6,7 @@ import Squads from "../components/Squads";
 
 export default function Home() {
   const [teams, setTeams] = useState([]);
-  const [squads, setSquads] = useState([]);
+  const [squads, setSquads] = useState({});
   const [player, setPlayer] = useState("Player Name");
   const [squad, setSquad] = useState("9a7059e278");
   const [loading, setLoading] = useState(false);
@@ -45,7 +45,6 @@ export default function Home() {
             <option value="9a7059e278">Stoked</option>
           </select>
           <button onClick={() => loadSquad()}>Load</button>
-          {loading && <div className={styles.load}>LOADING</div>}
 
           <input value={player} onChange={(e) => setPlayer(e.target.value)} />
           <button onClick={() => loadPeople()}>Load</button>

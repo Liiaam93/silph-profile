@@ -1,16 +1,14 @@
 import React from "react";
 
 const Squads = ({ squad }) => {
-  console.log(squad);
-
   return (
     <React.Fragment>
       <br />
-      <img src={squad[playerStats].player} />
+      <img src={squad.teamStats.logo} />
       <br />
-      {squad.teamStats}
+      {squad.teamStats.name}
       <br />
-      {squad.teamStats}
+      {squad.teamStats.wl}
     </React.Fragment>
   );
 };

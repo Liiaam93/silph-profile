@@ -37,13 +37,11 @@ export const getTeam = async (team) => {
       .toArray()
       .map((element) => $(element).html());
 
-    const teamStats = [
-      {
-        name: teamName,
-        logo: sprite,
-        wl: winLoss,
-      },
-    ];
+    const teamStats = {
+      name: teamName,
+      logo: sprite,
+      wl: winLoss,
+    };
 
     const playerStats = [];
     let j = 0;
@@ -65,7 +63,7 @@ export const getTeam = async (team) => {
       playerStats.push(team);
     }
     let squad = { playerStats, teamStats };
-    console.log(squad.playerStats.player);
+    // console.log(squad.playerStats);
     return squad;
   } catch (err) {}
 };
