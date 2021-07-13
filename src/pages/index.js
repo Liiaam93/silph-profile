@@ -6,7 +6,7 @@ import Squads from "../components/Squads";
 
 export default function Home() {
   const [teams, setTeams] = useState([]);
-  const [squads, setSquads] = useState({});
+  const [squads, setSquads] = useState([]);
   const [player, setPlayer] = useState("Player Name");
   const [squad, setSquad] = useState("9a7059e278");
   const [loading, setLoading] = useState(false);
@@ -38,12 +38,7 @@ export default function Home() {
         <h1>Silph Team Finder</h1>
         <br />
         <div>
-          <select
-            value={squad}
-            onChange={(e) => setSquad(e.currentTarget.value)}
-          >
-            <option value="9a7059e278">Stoked</option>
-          </select>
+          <input value={squad} onChange={(e) => setSquad(e.target.value)} />
           <button onClick={() => loadSquad()}>Load</button>
 
           <input value={player} onChange={(e) => setPlayer(e.target.value)} />
@@ -51,7 +46,7 @@ export default function Home() {
           {loading && <div className={styles.load}>LOADING</div>}
         </div>
         <div className={styles.teams}>
-          <Squads squad={squads} />
+          <Squads squadz={squads} />
 
           <Teams teams={teams} />
         </div>

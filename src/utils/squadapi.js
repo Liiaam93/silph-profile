@@ -62,9 +62,8 @@ export const getTeam = async (team) => {
       }
       playerStats.push(team);
     }
-    let squad = { playerStats, teamStats };
-    // console.log(squad.playerStats);
-    return squad;
+    const squadz = { playerStats, teamStats };
+    return squadz;
   } catch (err) {}
 };
 

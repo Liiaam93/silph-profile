@@ -1,14 +1,14 @@
 import React from "react";
 
-const Squads = ({ squad }) => {
+const Squads = ({ squadz }) => {
   return (
     <React.Fragment>
       <br />
-      <img src={squad.teamStats.logo} />
+      <img src={squadz.teamStats.logo} />
       <br />
-      {squad.teamStats.name}
+      {squadz.teamStats.name}
       <br />
-      {squad.teamStats.wl}
+      {squadz.teamStats.wl}
     </React.Fragment>
   );
 };
