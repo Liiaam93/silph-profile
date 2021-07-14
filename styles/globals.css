@@ -53,3 +53,26 @@ h1 {
   color: white;
   margin-top: -30px;
 }
+.flex-container {
+  display: flex;
+  flex-wrap: wrap;
+  width: 90%;
+  margin: auto;
+}
+
+.flex-child {
+  color: black;
+  justify-content: center;
+  width: auto;
+  max-width: 250px;
+  min-height: 250px;
+  max-height: 270px;
+  text-align: center;
+  flex: 1 0;
+  border: 2px solid black;
+  border-radius: 10%;
+  background-color: rgb(0, 117, 117);
+  margin-right: 10px;
+  margin-top: 10px;
+  font-weight: bolder;
+}
