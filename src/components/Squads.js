@@ -1,6 +1,9 @@
 import React from "react";
 
 const Squads = ({ squadz }) => {
+  if (!squadz.teamStats) {
+    return null;
+  }
   return (
     <React.Fragment>
       <br />
