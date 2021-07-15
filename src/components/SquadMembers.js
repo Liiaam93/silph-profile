@@ -13,9 +13,9 @@ const SquadMembers = ({ squadz }) => {
         <br />
         {player.map((stats) => (
           <React.Fragment key={stats.player}>
-            <div>{stats.player}</div>
-            <br /> <div>{stats.role}</div>
-            <div>
+            <div class="flex-child">
+              {stats.player}
+              <p>{stats.role}</p>
               <p>{stats.win_rate}</p>
               <p>{stats.matches}</p>
               <p>{stats.total_battles} Total Battles</p>

@@ -159,7 +159,9 @@ export default function Home() {
         <div className={styles.teams}>
           <SquadData squadz={squads} />
           <Teams teams={teams} />
-          <SquadMembers squadz={squads} />
+          <div class="player-container">
+            <SquadMembers squadz={squads} />
+          </div>
         </div>
       </main>
     </div>
