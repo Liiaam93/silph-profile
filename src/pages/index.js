@@ -30,6 +30,7 @@ export default function Home() {
     const json = await req.json();
     setSquads(json);
     setLoading(false);
+    setTeams([]);
   };
 
   return (

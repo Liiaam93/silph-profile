@@ -6,11 +6,13 @@ const SquadData = ({ squadz }) => {
   }
   return (
     <>
-      <div>{squadz.teamStats.name}</div>
-      <br />
-      <img src={squadz.teamStats.logo}></img>
-      <br />
-      <p>{squadz.teamStats.wl}</p>
+      <div class="teamData">
+        <h2>{squadz.teamStats.name}</h2>
+        <img src={squadz.teamStats.logo}></img>
+        <br />
+        {squadz.teamStats.wl}
+        <br />
+      </div>
     </>
   );
 };
