@@ -2,7 +2,8 @@ import Head from "next/head";
 import React, { useState } from "react";
 import Teams from "../components/Teams";
 import styles from "../../styles/Home.module.css";
-import Squads from "../components/Squads";
+import SquadMembers from "../components/SquadMembers";
+import SquadData from "../components/SquadData";
 
 export default function Home() {
   const [teams, setTeams] = useState([]);
@@ -155,8 +156,9 @@ export default function Home() {
           {loading && <div className={styles.load}>LOADING</div>}
         </div>
         <div className={styles.teams}>
+          <SquadData squadz={squads} />
           <Teams teams={teams} />
-          <Squads squadz={squads} />
+          <SquadMembers squadz={squads} />
         </div>
       </main>
     </div>
