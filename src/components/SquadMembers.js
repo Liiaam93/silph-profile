@@ -18,7 +18,8 @@ const SquadMembers = ({ squadz }) => {
             <div>
               <p>{stats.win_rate}</p>
               <p>{stats.matches}</p>
-              <p>{stats.score}</p>
+              <p>{stats.total_battles} Total Battles</p>
+              <p>{stats.score} / Points Earned</p>
             </div>
           </React.Fragment>
         ))}
