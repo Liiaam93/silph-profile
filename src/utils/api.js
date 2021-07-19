@@ -117,7 +117,6 @@ export const getSilph = async (player) => {
       });
     }
     teams.push(popular);
-    console.log(teams[7]);
     return teams;
   } catch (err) {
     console.log(err.message);
