@@ -1,5 +1,12 @@
 import React, { useEffect, useState } from "react";
 import Teams from "./Teams";
+/*                <button
+value={stats.player}
+onClick={() => loadStats(stats.player)}
+>
+{stats.player}
+</button>
+*/
 
 const SquadMembers = ({ squadz }) => {
   const [teams, setTeams] = useState([]);
@@ -28,10 +35,7 @@ const SquadMembers = ({ squadz }) => {
           {player.map((stats) => (
             <React.Fragment key={stats.player}>
               <div class="flex-child">
-                <button
-                  value={stats.player}
-                  onClick={() => loadStats(stats.player)}
-                >
+                <button id="btn" value={stats.player}>
                   {stats.player}
                 </button>
                 <p>{stats.role}</p>

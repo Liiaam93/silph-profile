@@ -12,6 +12,23 @@ export default function Home() {
   const [squad, setSquad] = useState("default");
   const [loading, setLoading] = useState(false);
 
+  function clicky() {
+    if (!document.getElementById("btn")) {
+    } else {
+      setPlayer(document.getElementById("btn").value);
+      loadPeople();
+    }
+  }
+
+  if (typeof window === "object") {
+    if (!document.getElementById("btn")) {
+    } else {
+      document.getElementById("btn").onclick = function () {
+        clicky();
+      };
+    }
+  }
+
   function handleChange(e) {
     setSquad(e.target.value);
   }
