@@ -32,10 +32,10 @@ const SquadMembers = ({ squadz }) => {
         <br />{" "}
         <div>
           <br />
-          {player.map((stats) => (
+          {player.map((stats, idx) => (
             <React.Fragment key={stats.player}>
               <div class="flex-child">
-                <button id="btn" value={stats.player}>
+                <button id={"btn" + index} value={stats.player}>
                   {stats.player}
                 </button>
                 <p>{stats.role}</p>
