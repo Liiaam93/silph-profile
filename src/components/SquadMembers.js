@@ -1,31 +1,23 @@
 import React, { useEffect, useState } from "react";
 import Teams from "./Teams";
-/*                <button
-value={stats.player}
-onClick={() => loadStats(stats.player)}
->
-{stats.player}
-</button>
-*/
 
 const SquadMembers = ({ squadz }) => {
   const [teams, setTeams] = useState([]);
 
   const loadStats = async (player) => {
-    document.getElementsByClassName("player-container").innerHTML = "";
     setTeams([]);
     const req = await fetch(`/api/player/${player}`);
     const json = await req.json();
     setTeams(json);
-    return <Teams teams={teams} />;
   };
 
   if (!squadz.teamStats) {
     return null;
   }
+
   let member = squadz.playerStats;
 
-  return member.map((player, index) => (
+  let squadMap = member.map((player, index) => (
     <>
       {" "}
       <React.Fragment key={index}>
@@ -35,7 +27,11 @@ const SquadMembers = ({ squadz }) => {
           {player.map((stats, idx) => (
             <React.Fragment key={stats.player}>
               <div class="flex-child">
-                <button id={"btn" + index} value={stats.player}>
+                <button
+                  id={"btn" + index}
+                  value={stats.player}
+                  onClick={() => loadStats(stats.player)}
+                >
                   {stats.player}
                 </button>
                 <p>{stats.role}</p>
@@ -51,6 +47,7 @@ const SquadMembers = ({ squadz }) => {
       </React.Fragment>
     </>
   ));
+  return (<Teams teams={teams} />), squadMap;
 };
 
 export default SquadMembers;

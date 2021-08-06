@@ -12,23 +12,6 @@ export default function Home() {
   const [squad, setSquad] = useState("default");
   const [loading, setLoading] = useState(false);
 
-  function clicky() {
-    if (!document.getElementById("btn")) {
-    } else {
-      setPlayer(document.getElementById("btn").value);
-      loadPeople();
-    }
-  }
-
-  if (typeof window === "object") {
-    if (!document.getElementById("btn")) {
-    } else {
-      document.getElementById("btn").onclick = function () {
-        clicky();
-      };
-    }
-  }
-
   function handleChange(e) {
     setSquad(e.target.value);
   }
@@ -76,7 +59,7 @@ export default function Home() {
             <option value="1d9d793727">BOJOVÉ FRETKY</option>
             <option value="67030e25b5">BOYS ARBOK IN TOWN</option>
             <option value="fe0edeeaab">CRO MUDBOI PROJECT</option>
-            <option value="76e5c6e984">DARK KNIGHTS & DAMES</option>
+            <option value="76e5c6e984">DARK KNIGHTS &amp; DAMES</option>
             <option value="72c69acac2">DUBLIN DECIDUEYES</option>
             <option value="168b3318c2">ECLATAXS</option>
             <option value="5447662054">ECOMOSTRI</option>
@@ -139,7 +122,7 @@ export default function Home() {
             <option value="9a7059e278">STOKED</option>
             <option value="1fa534fb67">ST PETER SQUAD</option>
             <option value="939b3dbc47">SWÉMONS</option>
-            <option value="0218fdc33d">TEA & PIZZA</option>
+            <option value="0218fdc33d">TEA &amp; PIZZA</option>
             <option value="80c47f113b">TEAM GROOKEY</option>
             <option value="376474a21a">TEAM INSOLOURDO</option>
             <option value="bc9d9cd89d">TEAM MAJADA</option>
