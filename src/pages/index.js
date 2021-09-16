@@ -4,11 +4,17 @@ import Teams from "../components/Teams";
 import styles from "../../styles/Home.module.css";
 import SquadMembers from "../components/SquadMembers";
 import SquadData from "../components/SquadData";
+import { atom, useRecoilState } from "recoil";
+
+export const teamz = atom({
+  key: "teamz",
+  default: [],
+});
 
 export default function Home() {
-  const [teams, setTeams] = useState([]);
+  const [teams, setTeams] = useRecoilState(teamz);
   const [squads, setSquads] = useState([]);
-  const [player, setPlayer] = useState("Player Name");
+  const [player, setPlayer] = useState("player name?");
   const [squad, setSquad] = useState("default");
   const [loading, setLoading] = useState(false);
 
@@ -16,6 +22,11 @@ export default function Home() {
     setSquad(e.target.value);
   }
 
+  const handleKeyPress = (event) => {
+    if (event.key === "Enter") {
+      loadPeople();
+    }
+  };
   const loadPeople = async () => {
     setLoading(true);
     const req = await fetch(`/api/player/${player}`);
@@ -149,6 +160,7 @@ export default function Home() {
           <input
             value={player}
             id="player"
+            onDoubleClick={(e) => (e.target.value = "")}
             onChange={(e) => setPlayer(e.target.value)}
           />
           <button onClick={() => loadPeople()} id="pbtn">
@@ -159,9 +171,7 @@ export default function Home() {
         <div className={styles.teams}>
           <SquadData squadz={squads} />
           <Teams teams={teams} />
-          <div class="player-container">
-            <SquadMembers squadz={squads} />
-          </div>
+          <SquadMembers squadz={squads} />
         </div>
       </main>
     </div>

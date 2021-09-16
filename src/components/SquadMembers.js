@@ -26,7 +26,7 @@ const SquadMembers = ({ squadz }) => {
           <br />
           {player.map((stats, idx) => (
             <React.Fragment key={stats.player}>
-              <div class="flex-child">
+              <div className="squad-child">
                 <button
                   id={"btn" + index}
                   value={stats.player}
@@ -38,7 +38,7 @@ const SquadMembers = ({ squadz }) => {
                 <p>{stats.win_rate}</p>
                 <p>{stats.matches}</p>
                 <p>{stats.total_battles} Total Battles</p>
-                <p>{stats.score} / Points Earned</p>
+                <p>{stats.score}</p>
               </div>
             </React.Fragment>
           ))}
@@ -47,7 +47,7 @@ const SquadMembers = ({ squadz }) => {
       </React.Fragment>
     </>
   ));
-  return (<Teams teams={teams} />), squadMap;
+  return (<Teams teams={teams} />), (<div className="squad">{squadMap}</div>);
 };
 
 export default SquadMembers;

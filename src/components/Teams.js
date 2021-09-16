@@ -1,24 +1,40 @@
-import React from "react"; // react dependencies
+import React from "react";
 
 const Teams = ({ teams }) => {
-  // create Teams component
-  return teams.map((team, index) => (
+  let pokemap = teams.slice(1).map((team, index) => (
     <React.Fragment key={index}>
-      <br />{" "}
-      <div class="container">
-        {team.map((pokemon) => (
-          <React.Fragment key={pokemon.pokemon}>
-            <br /> <div class="bout">{pokemon.bout}</div>
-            <div class="child">
-              <img src={pokemon.sprite} />
-              <p>{pokemon.pokemon}</p>
-            </div>
-          </React.Fragment>
-        ))}
+      <div className="MainDiv">
+        {" "}
+        <div>{team[0].bout}</div>{" "}
+        <div class="container">
+          <br />
+          {Array.isArray(team) &&
+            team.slice(1).map((pokemon) => (
+              <React.Fragment key={pokemon.pokemon}>
+                <div class="child">
+                  <img src={pokemon.sprite} />
+                  <p>{pokemon.pokemon}</p>
+                </div>
+              </React.Fragment>
+            ))}
+        </div>
+        <div>
+          {team[0].wins && "Score: "} <br />{" "}
+          {team[0].wins && team[0].wins + "-"}
+          {team[0].wins && 3 - team[0].wins}
+        </div>
       </div>
-      <br />
     </React.Fragment>
   ));
+  if (!teams[0]) {
+    return null;
+  }
+  return (
+    <>
+      <div className="bold">Win Rate: {teams[0].winrate}%</div>
+      <div>{pokemap}</div>{" "}
+    </>
+  );
 };
 
 export default Teams;
