@@ -57,7 +57,7 @@ const SquadMembers = ({ squadz }) => {
   ));
   return (
     <>
-      {loading && <div>Loading...</div>}
+      {loading && <div className="load">Loading...</div>}
       <div className="squad">{squadMap}</div>
     </>
   );
