@@ -14,7 +14,7 @@ export const teamz = atom({
 export default function Home() {
   const [teams, setTeams] = useRecoilState(teamz);
   const [squads, setSquads] = useState([]);
-  const [player, setPlayer] = useState("Trainer Name?");
+  const [player, setPlayer] = useState("... or type a Trainer Name");
   const [squad, setSquad] = useState("default");
   const [loading, setLoading] = useState(false);
 
@@ -57,7 +57,7 @@ export default function Home() {
         <div>
           <select value={squad} onChange={handleChange}>
             <option value="default" selected disabled hidden>
-              Choose here
+              Choose a Team
             </option>
             <option value="9a4b1b632b">AFRICAN SCATTERLINGS</option>
             <option value="0118d41b9d">ALTERED MINDS.</option>
@@ -156,7 +156,6 @@ export default function Home() {
             <option value="92271049a3">YORKSHIRE TRYHARDS</option>
           </select>
           <button onClick={() => loadSquad()}>Load</button>
-
           <input
             value={player}
             id="player"
