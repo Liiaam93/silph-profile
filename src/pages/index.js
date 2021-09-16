@@ -14,7 +14,7 @@ export const teamz = atom({
 export default function Home() {
   const [teams, setTeams] = useRecoilState(teamz);
   const [squads, setSquads] = useState([]);
-  const [player, setPlayer] = useState("player name?");
+  const [player, setPlayer] = useState("Trainer Name?");
   const [squad, setSquad] = useState("default");
   const [loading, setLoading] = useState(false);
 
@@ -169,8 +169,9 @@ export default function Home() {
           {loading && <div className={styles.load}>LOADING</div>}
         </div>
         <div className={styles.teams}>
-          <SquadData squadz={squads} />
           <Teams teams={teams} />
+
+          <SquadData squadz={squads} />
           <SquadMembers squadz={squads} />
         </div>
       </main>

@@ -1,14 +1,22 @@
 import React, { useEffect, useState } from "react";
 import Teams from "./Teams";
+import { atom, useRecoilState } from "recoil";
+
+import { teamz } from "../pages";
 
 const SquadMembers = ({ squadz }) => {
-  const [teams, setTeams] = useState([]);
+  const [teams, setTeams] = useRecoilState(teamz);
+  const [loading, setLoading] = useState(false);
 
   const loadStats = async (player) => {
     setTeams([]);
+    setLoading(true);
     const req = await fetch(`/api/player/${player}`);
     const json = await req.json();
     setTeams(json);
+    setLoading(false);
+
+    return <Teams teams={teams} />;
   };
 
   if (!squadz.teamStats) {
@@ -21,7 +29,7 @@ const SquadMembers = ({ squadz }) => {
     <>
       {" "}
       <React.Fragment key={index}>
-        <br />{" "}
+        <br />
         <div>
           <br />
           {player.map((stats, idx) => (
@@ -47,7 +55,12 @@ const SquadMembers = ({ squadz }) => {
       </React.Fragment>
     </>
   ));
-  return (<Teams teams={teams} />), (<div className="squad">{squadMap}</div>);
+  return (
+    <>
+      {loading && <div>Loading...</div>}
+      <div className="squad">{squadMap}</div>
+    </>
+  );
 };
 
 export default SquadMembers;
