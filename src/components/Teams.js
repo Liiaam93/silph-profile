@@ -1,38 +1,30 @@
 import React from "react";
+import { useState } from "react";
 
-const Teams = ({ teams }) => {
-  let pokemap = teams.slice(1).map((team, index) => (
-    <React.Fragment key={index}>
-      <div className="MainDiv">
-        {" "}
-        <div>{team[0].bout}</div>{" "}
-        <div class="container">
-          <br />
-          {Array.isArray(team) &&
-            team.slice(1).map((pokemon) => (
-              <React.Fragment key={pokemon.pokemon}>
-                <div class="child">
-                  <img src={pokemon.sprite} />
-                  <p>{pokemon.pokemon}</p>
-                </div>
-              </React.Fragment>
-            ))}
-        </div>
-        <div>
-          {team[0].wins && "Score: "} <br />{" "}
-          {team[0].wins && team[0].wins + "-"}
-          {team[0].wins && 3 - team[0].wins}
-        </div>
-      </div>
-    </React.Fragment>
-  ));
-  if (!teams[0]) {
+const Teams = ({ trainerData }) => {
+  if (!trainerData) {
     return null;
   }
+
+  let pokemap = trainerData.slice(1).map((team, index) => (
+    <div class="child" id={index}>
+      <img src={team.sprite} />
+      <br />
+      {team.pokemon}
+    </div>
+  ));
   return (
     <>
-      <div className="bold">Win Rate: {teams[0].winrate}%</div>
-      <div>{pokemap}</div>{" "}
+      <div className="MainDiv">
+        {trainerData[0].bout}
+        <br />
+        {trainerData[0].role}
+        <div className="container">{pokemap}</div>
+        {trainerData[0].wins && "Score:"}
+        <br />
+        {trainerData[0].wins &&
+          trainerData[0].wins + "-" + (3 - trainerData[0].wins)}
+      </div>
     </>
   );
 };

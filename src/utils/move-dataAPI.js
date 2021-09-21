@@ -47,12 +47,12 @@ const getMoveData = async (league) => {
         };
       }
     }
-
     return pokeMap;
   } catch (err) {
     console.log(err.message);
   }
 };
+
 module.exports = {
   getMoveData,
 };

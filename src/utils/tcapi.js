@@ -101,7 +101,7 @@ export const getTrainerInfo = async (player) => {
     }
     let winRate = ((points / maxPoints) * 100).toFixed(2);
 
-    let response = { winrate: winRate, teams: [] };
+    let teams = [{ winrate: winRate }];
     let j = 0;
     for (let i = 0; i < numOfTeams; i++) {
       let team = [{ bout: cupInfo[i], wins: wins[i], role: role[i] }];
@@ -111,7 +111,7 @@ export const getTrainerInfo = async (player) => {
           sprite: sprite[j],
         });
       }
-      response.teams.push(team);
+      teams.push(team);
     }
 
     Array.prototype.byCount = function () {
@@ -148,8 +148,8 @@ export const getTrainerInfo = async (player) => {
         sprite: cmn[k],
       });
     }
-    response.teams.push(popular);
-    return response;
+    teams.push(popular);
+    return teams;
   } catch (err) {
     console.log(err.message);
   }
