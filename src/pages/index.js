@@ -90,6 +90,7 @@ export default function Home() {
           <SquadMembers squadz={squads} />
         </div>
       </main>
+      <span style={{ fontSize: "small" }}>Made by Liiiaaam93</span>
     </div>
   );
 }
