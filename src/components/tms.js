@@ -1,5 +1,6 @@
 import React from "react";
 import { useState } from "react";
+import { get } from "lodash";
 
 const Teams = ({ teams }) => {
   if (!teams) {
@@ -10,6 +11,7 @@ const Teams = ({ teams }) => {
   const [league, setLeague] = useState("default");
 
   function handleChange(e) {
+    setMoves([]);
     setLeague(e.target.value);
   }
 

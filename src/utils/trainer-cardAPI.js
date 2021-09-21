@@ -66,13 +66,15 @@ export const getTrainerInfo = async (player) => {
         let len = pokemon[k].length;
         pokemon[k] = pokemon[k].slice(7, len);
         pokemon[k] = pokemon[k] + "_alolan";
-      } else if (pokemon[k].includes("(therian forme)")) {
+      } else if (pokemon[k].includes(" (therian forme)")) {
         pokemon[k] = pokemon[k].replace(" (therian forme)", "_therian");
-      } else if (pokemon[k].includes("(origin forme)")) {
+      } else if (pokemon[k].includes("Darmanitan")) {
+        pokemon[k] = pokemon[k] + "_standard";
+      } else if (pokemon[k].includes(" (origin forme)")) {
         pokemon[k] = pokemon[k].replace(" (origin forme)", "_origin");
-      } else if (pokemon[k].includes("(altered forme)")) {
-        pokemon[k] = pokemon[k].replace(" (altered forme)", "_altered");
-      } else if (pokemon[k].includes("(defense forme)")) {
+      } else if (pokemon[k].includes(" (Altered Forme)")) {
+        pokemon[k] = pokemon[k].replace(" (Altered Forme)", "_altered");
+      } else if (pokemon[k].includes(" (defense forme)")) {
         pokemon[k] = pokemon[k].replace(" (defense forme)", "_defense");
       } else if (pokemon[k].includes("rainy")) {
         let len = pokemon[k].length;
