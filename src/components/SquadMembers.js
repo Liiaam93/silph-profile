@@ -15,7 +15,7 @@ const SquadMembers = ({ squadz }) => {
     const json = await req.json();
     setTeams(json);
     setLoading(false);
-
+    window.scrollTo(0, 0);
     return <Teams teams={teams} />;
   };
 

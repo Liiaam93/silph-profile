@@ -10,6 +10,20 @@ const Teams = ({ trainerData }) => {
   if (!trainerData) {
     return null;
   }
+  const monArr = trainerData.slice(1).map((team) => team.pokemon.toLowerCase());
+
+  const copyPVP = () => {
+    let copyText = "";
+    for (let i = 0; i < 6; i++) {
+      copyText += monArr[i] + ",";
+      copyText += moves[monArr[i]].Recommended_Moves[0] + ",";
+      copyText += moves[monArr[i]].Recommended_Moves[1] + ",";
+      copyText += moves[monArr[i]].Recommended_Moves[2] + "\n";
+    }
+    copyText = copyText.slice(0, copyText.length - 1);
+    navigator.clipboard.writeText(copyText);
+    alert("copied!");
+  };
 
   function handleChange(e) {
     setLeague(e.target.value);
@@ -56,6 +70,9 @@ const Teams = ({ trainerData }) => {
           <option value="Master">Master</option>
           <option value="Field">Field</option>
         </select>
+        {league !== "default" && (
+          <button onClick={() => copyPVP()}>Copy PVPOKE Export</button>
+        )}
         <br />
         <br />
       </div>
