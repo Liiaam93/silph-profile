@@ -54,7 +54,6 @@ export default function Home() {
       </Head>
       <main className={styles.main}>
         <h1>Silph Team Finder</h1>
-        <br />
         <div>
           <select value={squad} onChange={handleChange}>
             <option value="default" selected disabled hidden>
