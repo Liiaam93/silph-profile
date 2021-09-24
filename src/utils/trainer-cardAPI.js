@@ -51,7 +51,7 @@ export const getTrainerInfo = async (player) => {
 
     for (let i = 0; i < sprite.length; i++) {
       if (sprite[i] === "https://silph.gg/img/icon-shadow-purple.png") {
-        pokemon[i - 1] += "_Shadow";
+        pokemon[i - 1] += "_shadow";
         sprite[i] = 0;
         sprite.splice(i, 1);
       }
@@ -66,30 +66,37 @@ export const getTrainerInfo = async (player) => {
         let len = pokemon[k].length;
         pokemon[k] = pokemon[k].slice(7, len);
         pokemon[k] = pokemon[k] + "_alolan";
-      } else if (pokemon[k].includes(" (therian forme)")) {
-        pokemon[k] = pokemon[k].replace(" (therian forme)", "_therian");
+      } else if (pokemon[k].includes(" (Therian forme)")) {
+        pokemon[k] = pokemon[k].replace(" (Therian forme)", "_therian");
       } else if (pokemon[k].includes("Darmanitan")) {
         pokemon[k] = pokemon[k] + "_standard";
-      } else if (pokemon[k].includes(" (origin forme)")) {
-        pokemon[k] = pokemon[k].replace(" (origin forme)", "_origin");
+      } else if (pokemon[k].includes(" (Origin Forme)")) {
+        pokemon[k] = pokemon[k].replace(" (Origin Forme)", "_origin"); //
+      } else if (pokemon[k].includes(" (Normal)")) {
+        pokemon[k] = pokemon[k].replace(" (Normal)", "");
       } else if (pokemon[k].includes(" (Altered Forme)")) {
         pokemon[k] = pokemon[k].replace(" (Altered Forme)", "_altered");
-      } else if (pokemon[k].includes(" (defense forme)")) {
-        pokemon[k] = pokemon[k].replace(" (defense forme)", "_defense");
-      } else if (pokemon[k].includes("rainy")) {
+      } else if (pokemon[k].includes(" (Defense Forme)")) {
+        pokemon[k] = pokemon[k].replace(" (Defense Forme)", "_defense");
+      } else if (pokemon[k].includes("Rainy")) {
         let len = pokemon[k].length;
         pokemon[k] = pokemon[k].slice(6, len);
         pokemon[k] = pokemon[k] + "_rainy";
         pokemon[k] = pokemon[k].trim();
-      } else if (pokemon[k].includes("sunny")) {
+      } else if (pokemon[k].includes("Sunny")) {
         let len = pokemon[k].length;
         pokemon[k] = pokemon[k].slice(6, len);
         pokemon[k] = pokemon[k] + "_sunny";
         pokemon[k] = pokemon[k].trim();
-      } else if (pokemon[k].includes("snowy")) {
+      } else if (pokemon[k].includes("Snowy")) {
         let len = pokemon[k].length;
         pokemon[k] = pokemon[k].slice(6, len);
         pokemon[k] = pokemon[k] + "_snowy";
+        pokemon[k] = pokemon[k].trim();
+      } else if (pokemon[k].includes("Armored")) {
+        let len = pokemon[k].length;
+        pokemon[k] = pokemon[k].slice(8, len);
+        pokemon[k] = pokemon[k] + "_armored";
         pokemon[k] = pokemon[k].trim();
       }
     }
