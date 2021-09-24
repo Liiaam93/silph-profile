@@ -78,6 +78,12 @@ export const getTrainerInfo = async (player) => {
         pokemon[k] = pokemon[k].replace(" (Altered Forme)", "_altered");
       } else if (pokemon[k].includes(" (Defense Forme)")) {
         pokemon[k] = pokemon[k].replace(" (Defense Forme)", "_defense");
+      } else if (pokemon[k].includes(" (Trash Cloak)")) {
+        pokemon[k] = pokemon[k].replace(" (Trash Cloak)", "_trash");
+      } else if (pokemon[k].includes(" (Sandy Cloak)")) {
+        pokemon[k] = pokemon[k].replace(" (Sandy Cloak)", "_sandy");
+      } else if (pokemon[k].includes(" (Plant Cloak)")) {
+        pokemon[k] = pokemon[k].replace(" (Plant Cloak)", "_plant");
       } else if (pokemon[k].includes("Rainy")) {
         let len = pokemon[k].length;
         pokemon[k] = pokemon[k].slice(6, len);
