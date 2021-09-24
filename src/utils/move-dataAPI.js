@@ -6,8 +6,10 @@ const getMoveData = async (league) => {
 
   if (league == "Great") {
     url = "all/overall/rankings-1500";
-  } else if (league == "Field") {
+  } else if (league == "Dungeon") {
     url = "factions/overall/rankings-1500";
+  } else if (league == "Nightfall") {
+    url = "nightfall/overall/rankings-1500";
   } else if (league == "Ultra") {
     url = "all/overall/rankings-2500";
   } else if (league == "Master") {

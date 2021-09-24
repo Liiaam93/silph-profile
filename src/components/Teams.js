@@ -44,11 +44,13 @@ const Teams = ({ trainerData }) => {
       <br />
       {team.pokemon}
       <br />
-      {get(moves, `[${team.pokemon.toLowerCase()}].Recommended_Moves[0]`)}
-      <br />
-      {get(moves, `[${team.pokemon.toLowerCase()}].Recommended_Moves[1]`)}
-      <br />
-      {get(moves, `[${team.pokemon.toLowerCase()}].Recommended_Moves[2]`)}
+      <span style={{ fontSize: "smaller" }}>
+        {get(moves, `[${team.pokemon.toLowerCase()}].Recommended_Moves[0]`)}
+        <br />
+        {get(moves, `[${team.pokemon.toLowerCase()}].Recommended_Moves[1]`)}
+        <br />
+        {get(moves, `[${team.pokemon.toLowerCase()}].Recommended_Moves[2]`)}
+      </span>
     </div>
   ));
   return (
@@ -68,7 +70,8 @@ const Teams = ({ trainerData }) => {
           <option value="Great">Great</option>
           <option value="Ultra">Ultra</option>
           <option value="Master">Master</option>
-          <option value="Field">Field</option>
+          <option value="Dungeon">Dungeon</option>
+          <option value="Nightfall">Nightfall</option>
         </select>
         {league !== "default" && (
           <button onClick={() => copyPVP()}>Copy PVPOKE Export</button>
