@@ -26,8 +26,6 @@ export const getTrainerInfo = async (player) => {
         "https://cdn.iconscout.com/icon/premium/png-256-thumb/pokeball-games-video-casino-gamer-1-42381.png"
       );
     }
-
-    //console.log(sprite)
     let cupInfo = $(
       "#networkAndAchievements > div.arenaHistory.cardBlock > div.content > div.display.bouts > div.tournament > div > div.overview"
     )
