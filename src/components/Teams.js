@@ -12,7 +12,7 @@ const Teams = ({ trainerData }) => {
   }
   const monArr = trainerData.slice(1).map((team) => team.pokemon.toLowerCase());
 
-  const copyPVP = () => {
+  const copyPVP = async () => {
     let copyText = "";
     for (let i = 0; i < 6; i++) {
       copyText += monArr[i] + ",";
@@ -21,7 +21,7 @@ const Teams = ({ trainerData }) => {
       copyText += moves[monArr[i]].Recommended_Moves[2] + "\n";
     }
     copyText = copyText.slice(0, copyText.length - 1);
-    navigator.clipboard.writeText(copyText);
+    await navigator.clipboard.writeText(copyText);
     alert("copied!");
   };
 
