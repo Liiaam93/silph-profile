@@ -112,9 +112,20 @@ export const getTrainerInfo = async (player) => {
     for (let i = 0; i < numOfTeams; i++) {
       points = points + parseInt(wins[i]);
     }
+
+    const silphAPI = `https://sil.ph/${player}.json`;
+    const dat = await fetch(silphAPI);
+    const json = await dat.json();
+    const playerName = json.data.in_game_username;
+    const avatar = json.data.avatar;
     let winRate = ((points / maxPoints) * 100).toFixed(2);
 
-    let response = { winrate: winRate, teams: [] };
+    let response = {
+      winrate: winRate,
+      playername: playerName,
+      avatar: avatar,
+      teams: [],
+    };
     let j = 0;
     for (let i = 0; i < numOfTeams; i++) {
       let team = [{ bout: cupInfo[i], wins: wins[i], role: role[i] }];
@@ -161,7 +172,9 @@ export const getTrainerInfo = async (player) => {
         sprite: cmn[k],
       });
     }
+
     response.teams.push(popular);
+    console.log(avatar);
     return response;
   } catch (err) {
     console.log(err.message);

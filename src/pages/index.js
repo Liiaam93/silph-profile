@@ -6,6 +6,7 @@ import SquadMembers from "../components/SquadMembers";
 import SquadData from "../components/SquadData";
 import { atom, useRecoilState } from "recoil";
 import { factions } from "../utils/model/Factions";
+import { size } from "lodash";
 
 export const teamz = atom({
   key: "teamz",
@@ -76,8 +77,23 @@ export default function Home() {
           </button>
           {loading && <div className={styles.load}>LOADING</div>}
         </div>{" "}
-        {trainerData.winrate}
-        {trainerData.winrate && "% Win-Rate"}
+        <h3>{trainerData.playername}</h3>
+        {trainerData.avatar && (
+          <p>
+            <img
+              src={trainerData.avatar}
+              style={{
+                width: "80px",
+                height: "80px",
+                background: "LightBlue",
+              }}
+            />
+          </p>
+        )}
+        <p>
+          {trainerData.winrate && "Win Rate:"} <br />
+          {trainerData.winrate && trainerData.winrate + "%"}
+        </p>
         <div>
           {trainerData.teams &&
             trainerData.teams.map(

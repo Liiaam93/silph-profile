@@ -56,7 +56,7 @@ const Teams = ({ trainerData }) => {
   return (
     <>
       <div className="MainDiv">
-        {trainerData[0].bout}
+        <span style={{ fontWeight: "600" }}>{trainerData[0].bout}</span>
         <br />
         {trainerData[0].role}
         <div className="container">{pokemap}</div>
