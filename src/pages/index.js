@@ -90,10 +90,13 @@ export default function Home() {
             />
           </p>
         )}
-        <p>
-          {trainerData.winrate && "Win Rate:"} <br />
-          {trainerData.winrate && trainerData.winrate + "%"}
-        </p>
+        {trainerData.winrate && (
+          <p>
+            Win Rate:
+            <br />
+            {trainerData.winrate}%
+          </p>
+        )}
         <div>
           {trainerData.teams &&
             trainerData.teams.map(
