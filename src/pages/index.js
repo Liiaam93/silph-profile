@@ -53,28 +53,37 @@ export default function Home() {
         <meta name="tool of tools" content="Made by Liiiaaam93" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main className={styles.main}>
+      <main>
         <h1>Silph Team Finder</h1>
         <div>
-          <select value={squad} onChange={handleChange}>
+          <select value={squad} className="input-box" onChange={handleChange}>
             <option value="default" selected disabled hidden>
               Choose a Team
             </option>
             {Object.keys(factions).map((key) => (
               <option value={key}>{factions[key]}</option>
             ))}
-          </select>
-          <button onClick={() => loadSquad()}>Load</button>
-          <input
-            value={player}
-            id="player"
-            placeholder="... or type a Trainer Name"
-            onDoubleClick={(e) => (e.target.value = "")}
-            onChange={(e) => setPlayer(e.target.value)}
-          />
-          <button onClick={() => loadPeople()} id="pbtn">
-            Load
+          </select>{" "}
+          <button className="index-button" onClick={() => loadSquad()}>
+            Load Team
           </button>
+          <p>
+            <input
+              value={player}
+              id="player"
+              className="input-box"
+              placeholder="... or type a Trainer Name"
+              onDoubleClick={(e) => (e.target.value = "")}
+              onChange={(e) => setPlayer(e.target.value)}
+            />{" "}
+            <button
+              className="index-button"
+              onClick={() => loadPeople()}
+              id="pbtn"
+            >
+              Load Player
+            </button>
+          </p>
           {loading && <div className={styles.load}>LOADING</div>}
         </div>{" "}
         <h3>{trainerData.playername}</h3>
