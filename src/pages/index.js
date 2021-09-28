@@ -104,7 +104,7 @@ export default function Home() {
               Load Player
             </button>
           </p>
-          {loading && <div className={styles.load}>LOADING</div>}
+          {loading && <div className={styles.load}></div>}
         </div>{" "}
         <h3>{trainerData.playername}</h3>
         {trainerData.avatar && (
