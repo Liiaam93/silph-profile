@@ -52,13 +52,14 @@ img {
   border: solid black 1px;
   border-radius: 10px;
   text-align: center;
-  width: 30%;
+  width: 400px;
+  margin: auto;
   background-color: rgb(196, 196, 196);
 }
 .index-button {
   height: 25px;
   border-radius: 5px;
-  margin-right: 20px;
+  margin: auto;
   background-color: yellow;
 }
 .container {
