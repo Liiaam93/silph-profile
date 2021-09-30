@@ -45,7 +45,7 @@ const SquadMembers = ({ squadz }) => {
                 </button>
                 <p>Role: {stats.role.replace(" Specialist", "")}</p>
                 <p>Win Rate: {stats.win_rate}</p>
-                <p>Rounds Played: {stats.matches}</p>
+                <p>Bouts Played: {stats.matches}</p>
                 <p>Total Battles: {stats.total_battles} </p>
                 <p>Points Earned: {stats.score}</p>
               </div>
