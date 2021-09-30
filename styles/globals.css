@@ -59,8 +59,9 @@ img {
 .index-button {
   height: 25px;
   border-radius: 5px;
-  margin: auto;
   background-color: yellow;
+  border: none;
+  border-bottom: 1px black solid;
 }
 .container {
   display: flex;
@@ -83,8 +84,10 @@ img {
   flex: 0 0 auto;
   margin: 10px;
   background-color: rgb(212, 205, 103);
-  border: solid black 2px;
   min-width: 150px;
+  /* border: 2px solid #000; */
+  border-radius: 10px;
+  padding-bottom: 2px;
 }
 
 .MainDiv {
@@ -102,11 +105,12 @@ img {
   justify-content: center;
   align-content: flex-start;
   border: solid black 2px;
-  border-radius: 10px;
+  border-radius: 70px;
   width: auto;
   max-width: 800px;
   margin: auto;
   background-color: rgb(202, 90, 90);
+  padding-bottom: 15px;
 }
 
 .bold {
@@ -116,4 +120,12 @@ img {
 }
 #player {
   margin-top: 30px;
+}
+.player-button {
+  height: 30px;
+  background-color: rgb(252, 255, 68);
+  border-radius: 5px;
+  border: none;
+  border-bottom: 1px solid;
+  margin-top: 5px;
 }

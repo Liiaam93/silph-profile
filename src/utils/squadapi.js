@@ -51,8 +51,8 @@ export const getTeam = async (team) => {
         team.push({
           player: players[j],
           role: role[j],
-          score: score[j],
-          matches: matches[j],
+          score: score[j].replace(" Wins", ""),
+          matches: matches[j].replace(" Matches", ""),
           total_battles: parseInt(matches[j]) * 3,
           win_rate:
             ((parseInt(score[j]) / (parseInt(matches[j]) * 3)) * 100).toFixed(

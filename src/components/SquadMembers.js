@@ -36,17 +36,18 @@ const SquadMembers = ({ squadz }) => {
             <React.Fragment key={stats.player}>
               <div className="squad-child">
                 <button
+                  className="player-button"
                   id={"btn" + index}
                   value={stats.player}
                   onClick={() => loadStats(stats.player)}
                 >
                   {stats.player}
                 </button>
-                <p>{stats.role}</p>
-                <p>{stats.win_rate}</p>
-                <p>{stats.matches}</p>
-                <p>{stats.total_battles} Total Battles</p>
-                <p>{stats.score}</p>
+                <p>Role: {stats.role.replace(" Specialist", "")}</p>
+                <p>Win Rate: {stats.win_rate}</p>
+                <p>Rounds Played: {stats.matches}</p>
+                <p>Total Battles: {stats.total_battles} </p>
+                <p>Points Earned: {stats.score}</p>
               </div>
             </React.Fragment>
           ))}
