@@ -8,10 +8,17 @@
     "start": "next start"
   },
   "dependencies": {
+    "@chakra-ui/icons": "^1.0.15",
+    "@chakra-ui/react": "^1.6.8",
+    "@emotion/react": "^11.4.1",
+    "@emotion/styled": "^11.3.0",
     "cheerio": "^1.0.0-rc.10",
+    "framer-motion": "^4.1.17",
+    "get-google-fonts": "^1.2.2",
     "isomorphic-fetch": "^3.0.0",
     "lodash": "^4.17.21",
     "next": "^10.2.3",
+    "next-google-fonts": "^2.2.0",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "recoil": "^0.4.1"

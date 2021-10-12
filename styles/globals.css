@@ -1,4 +1,4 @@
-html,
+/*html,
 body {
   padding: 0;
   margin: 0;
@@ -85,7 +85,6 @@ img {
   margin: 10px;
   background-color: rgb(212, 205, 103);
   min-width: 150px;
-  /* border: 2px solid #000; */
   border-radius: 10px;
   padding-bottom: 2px;
 }
@@ -129,3 +128,4 @@ img {
   border-bottom: 1px solid;
   margin-top: 5px;
 }
+*/

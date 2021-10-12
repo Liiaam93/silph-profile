@@ -37,11 +37,12 @@ const getMoveData = async (league) => {
 
     const pokeMap = {};
     for (let j = 0; j < pLen; j++) {
-      const { speciesId, speciesName, moveset, score } = data[j];
+      const { speciesId, speciesName, moveset, score, counters } = data[j];
       const { fastMoves, chargedMoves } = data[j].moves;
       if (!pokeMap[speciesId]) {
         pokeMap[speciesId] = {
           Name: speciesName,
+          Counters: counters,
           Recommended_Moves: moveset,
           Fast_Moves: fastMoves,
           Charged_Moves: chargedMoves,

@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from "react";
 import Teams from "./Teams";
 import { atom, useRecoilState } from "recoil";
-
-import { teamz } from "../pages";
+import { Button } from "@chakra-ui/button";
+import { Flex } from "@chakra-ui/layout";
+import { Text } from "@chakra-ui/layout";
+import { tData } from "./Navbar";
 
 const SquadMembers = ({ squadz }) => {
-  const [teams, setTeams] = useRecoilState(teamz);
+  const [teams, setTeams] = useRecoilState(tData);
   const [loading, setLoading] = useState(false);
 
   const loadStats = async (player) => {
@@ -27,39 +29,47 @@ const SquadMembers = ({ squadz }) => {
 
   let squadMap = member.map((player, index) => (
     <>
-      {" "}
-      <React.Fragment key={index}>
-        <br />
-        <div>
-          <br />
-          {player.map((stats, idx) => (
-            <React.Fragment key={stats.player}>
-              <div className="squad-child">
-                <button
-                  className="player-button"
-                  id={"btn" + index}
-                  value={stats.player}
-                  onClick={() => loadStats(stats.player)}
-                >
-                  {stats.player}
-                </button>
-                <p>Role: {stats.role.replace(" Specialist", "")}</p>
-                <p>Win Rate: {stats.win_rate}</p>
-                <p>Bouts Played: {stats.matches}</p>
-                <p>Total Battles: {stats.total_battles} </p>
-                <p>Points Earned: {stats.score}</p>
-              </div>
-            </React.Fragment>
-          ))}
-        </div>
-        <br />
-      </React.Fragment>
+      <Flex
+        color="black"
+        w="200px"
+        mt="5px"
+        pb="10px"
+        flexDir="column"
+        mr="5px"
+        border="1px"
+        borderRadius="md"
+        align="center"
+        bg="lightblue"
+      >
+        {player.map((stats, idx) => (
+          <React.Fragment key={stats.player}>
+            <Button
+              bg="gold"
+              shadow="outline"
+              mt="5px"
+              mb="10px"
+              id={"btn" + index}
+              value={stats.player}
+              onClick={() => loadStats(stats.player)}
+            >
+              {stats.player}
+            </Button>
+            <Text>Role: {stats.role.replace(" Specialist", "")}</Text>
+            <Text>Win Rate: {stats.win_rate}</Text>
+            <Text>Bouts Played: {stats.matches}</Text>
+            <Text>Total Battles: {stats.total_battles} </Text>
+            <Text>Points Earned: {stats.score}</Text>
+          </React.Fragment>
+        ))}
+      </Flex>
     </>
   ));
   return (
     <>
       {loading && <div className="load"></div>}
-      <div className="squad">{squadMap}</div>
+      <Flex wrap="wrap" maxW="900px" m="auto" justify="center">
+        {squadMap}
+      </Flex>
     </>
   );
 };
