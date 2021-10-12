@@ -16,16 +16,19 @@ export default function Home() {
   const [squads] = useRecoilState(sData);
 
   return (
-    <Flex minHeight="100vh" flexDir="column" alignContent="center">
+    <>
       <Navbar />
-      {trainerData.avatar && <TrainerData />}
-      {trainerData.teams &&
-        trainerData.teams.map((team) => (
-          <Teams key={team.title} trainerData={team} />
-        ))}
-      <SquadData squadz={squads} />
-      <SquadMembers squadz={squads} />
-      <Text alignSelf="center">Made by Liiiaaam93</Text>
-    </Flex>
+
+      <Flex minHeight="100vh" flexDir="column" alignContent="center" pt="10vh">
+        {trainerData.avatar && <TrainerData />}
+        {trainerData.teams &&
+          trainerData.teams.map((team) => (
+            <Teams key={team.title} trainerData={team} />
+          ))}
+        <SquadData squadz={squads} />
+        <SquadMembers squadz={squads} />
+        <Text alignSelf="center">Made by Liiiaaam93</Text>
+      </Flex>
+    </>
   );
 }

@@ -47,12 +47,15 @@ const Navbar = () => {
   };
 
   return (
-    <HStack position="fixed" bg="slategrey" p="10px" w="100%" wrap="wrap">
-      <Heading zIndex="99" size="lg">
-        Silph Team Finder
-      </Heading>
-      <Flex>
-        <Select value={squad} onChange={handleChange}>
+    <HStack
+      position="fixed"
+      bg="slategrey"
+      p="5px"
+      w="100%"
+      alignContent="center"
+    >
+      <Flex w="50%">
+        <Select value={squad} onChange={handleChange} mr="10px">
           <option value="default" selected disabled hidden>
             Choose a Team
           </option>
@@ -62,8 +65,9 @@ const Navbar = () => {
         </Select>
         <Button onClick={() => loadSquad()}>Load Team</Button>
       </Flex>
-      <Flex>
+      <Flex w="50%" p="2px">
         <Input
+          mr="5px"
           value={player}
           id="player"
           placeholder="... or type a Trainer Name"
