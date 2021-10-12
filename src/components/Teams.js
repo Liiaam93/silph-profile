@@ -78,7 +78,7 @@ const Teams = ({ trainerData }) => {
   return (
     <>
       <Box
-        w="70%"
+        w="80%"
         m="auto"
         pt="5px"
         mt="10px"

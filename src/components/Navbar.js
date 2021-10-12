@@ -1,10 +1,12 @@
 import { Button } from "@chakra-ui/button";
 import { Input } from "@chakra-ui/input";
-import { Flex, Heading, HStack } from "@chakra-ui/layout";
+import { Flex, HStack, Circle, Center } from "@chakra-ui/layout";
 import { Select } from "@chakra-ui/select";
 import { atom, useRecoilState } from "recoil";
 import { useState } from "react";
 import { Text } from "@chakra-ui/layout";
+import { motion, isValidMotionProp } from "framer-motion";
+import { Image } from "@chakra-ui/image";
 
 import { factions } from "../utils/model/Factions";
 
@@ -17,6 +19,7 @@ export const sData = atom({
   key: "squadData",
   default: [],
 });
+const MotionBox = motion(Circle);
 
 const Navbar = () => {
   const [trainerData, setTeams] = useRecoilState(tData);
@@ -47,39 +50,75 @@ const Navbar = () => {
   };
 
   return (
-    <HStack
-      position="fixed"
-      bg="slategrey"
-      p="5px"
-      w="100%"
-      alignContent="center"
-    >
-      <Flex w="50%">
-        <Select value={squad} onChange={handleChange} mr="10px">
-          <option value="default" selected disabled hidden>
-            Choose a Team
-          </option>
-          {Object.keys(factions).map((key) => (
-            <option value={key}>{factions[key]}</option>
-          ))}
-        </Select>
-        <Button onClick={() => loadSquad()}>Load Team</Button>
-      </Flex>
-      <Flex w="50%" p="2px">
-        <Input
-          mr="5px"
-          value={player}
-          id="player"
-          placeholder="... or type a Trainer Name"
-          onDoubleClick={(e) => (e.target.value = "")}
-          onChange={(e) => setPlayer(e.target.value)}
-        />
-        <Button onClick={() => loadPeople()} id="pbtn">
-          Load Player
-        </Button>
-      </Flex>
-      {loading && <Text>LOADING</Text>}
-    </HStack>
+    <>
+      <HStack
+        wrap="wrap"
+        zIndex="sticky"
+        position="fixed"
+        bg="#525252"
+        p="5px"
+        w="100%"
+      >
+        <Flex w="xl" m="auto">
+          <Select value={squad} onChange={handleChange} bg="#F0F8FF" pr="5px">
+            <option value="default" selected disabled hidden>
+              Choose a Team
+            </option>
+            {Object.keys(factions).map((key) => (
+              <option value={key}>{factions[key]}</option>
+            ))}
+          </Select>
+          <Button
+            fontSize="sm"
+            _hover={{
+              background: "gold",
+              color: "white",
+            }}
+            onClick={() => loadSquad()}
+          >
+            Load Team
+          </Button>
+        </Flex>
+        <Flex w="xl" p="5px">
+          <Input
+            bg="#F0F8FF"
+            mr="5px"
+            value={player}
+            id="player"
+            placeholder="... or type a Trainer Name"
+            onDoubleClick={(e) => (e.target.value = "")}
+            onChange={(e) => setPlayer(e.target.value)}
+          />
+          <Button
+            fontSize="sm"
+            _hover={{
+              background: "gold",
+              color: "white",
+            }}
+            onClick={() => loadPeople()}
+            id="pbtn"
+          >
+            Load Player
+          </Button>
+        </Flex>
+        {loading && (
+          <>
+            <MotionBox
+              size="61px"
+              animate={{ rotate: 360 }}
+              transition={{ duration: 1, repeat: Infinity }}
+              border="solid red 20px"
+              bgColor="#000"
+              borderRadius="50%"
+              borderColor=" red red #fff #fff"
+              position="fixed"
+              left="44%"
+              top="30%"
+            />
+          </>
+        )}
+      </HStack>
+    </>
   );
 };
 export default Navbar;

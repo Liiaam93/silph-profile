@@ -19,7 +19,13 @@ export default function Home() {
     <>
       <Navbar />
 
-      <Flex minHeight="100vh" flexDir="column" alignContent="center" pt="10vh">
+      <Flex
+        pt="15vh"
+        minHeight="100vh"
+        flexDir="column"
+        alignContent="center"
+        bgColor="#414141"
+      >
         {trainerData.avatar && <TrainerData />}
         {trainerData.teams &&
           trainerData.teams.map((team) => (

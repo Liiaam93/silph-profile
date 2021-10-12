@@ -33,6 +33,7 @@ const SquadData = ({ squadz }) => {
           <Text fontSize="3xl"> {squadz.teamStats.name}</Text>
           <Text>Faction Win Rate:</Text>
           <Text
+            textShadow="-1px 0 #000, 0 1px #000, 1px 0 #000, 0 -1px #000"
             fontWeight="bold"
             color={winOver50 ? "green" : "yellow"}
             fontSize="2xl"
