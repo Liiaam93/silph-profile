@@ -7,7 +7,7 @@ import { useState } from "react";
 import { Text } from "@chakra-ui/layout";
 import { motion, isValidMotionProp } from "framer-motion";
 import { Image } from "@chakra-ui/image";
-
+import Loader from "./Loader";
 import { factions } from "../utils/model/Factions";
 
 export const tData = atom({
@@ -56,11 +56,14 @@ const Navbar = () => {
         zIndex="sticky"
         position="fixed"
         bg="#525252"
-        p="5px"
         w="100%"
+        p="5px"
       >
-        <Flex w="xl" m="auto">
-          <Select value={squad} onChange={handleChange} bg="#F0F8FF" pr="5px">
+        <Text color="gold" m="auto">
+          Silph Team Finder
+        </Text>
+        <Flex w="xl" pb="5px">
+          <Select value={squad} onChange={handleChange} bg="#F0F8FF">
             <option value="default" selected disabled hidden>
               Choose a Team
             </option>
@@ -69,6 +72,8 @@ const Navbar = () => {
             ))}
           </Select>
           <Button
+            ml="5px"
+            mr="5px"
             fontSize="sm"
             _hover={{
               background: "gold",
@@ -79,10 +84,9 @@ const Navbar = () => {
             Load Team
           </Button>
         </Flex>
-        <Flex w="xl" p="5px">
+        <Flex w="xl">
           <Input
             bg="#F0F8FF"
-            mr="5px"
             value={player}
             id="player"
             placeholder="... or type a Trainer Name"
@@ -90,6 +94,8 @@ const Navbar = () => {
             onChange={(e) => setPlayer(e.target.value)}
           />
           <Button
+            ml="5px"
+            mr="5px"
             fontSize="sm"
             _hover={{
               background: "gold",
@@ -101,23 +107,11 @@ const Navbar = () => {
             Load Player
           </Button>
         </Flex>
-        {loading && (
-          <MotionBox
-            size="90px"
-            animate={{ x: [-75, 75, 75, -75, -75], y: [0, 0, 100, 100, 0] }}
-            transition={{ duration: 3, repeat: Infinity }}
-            position="fixed"
-            left="44%"
-            top="30%"
-          >
-            <Image src="/logo.png" />
-          </MotionBox>
-        )}
       </HStack>
       {loading && (
-        <Text position="fixed" left="45%" top="70%">
-          Loading
-        </Text>
+        <>
+          <Loader />
+        </>
       )}
     </>
   );

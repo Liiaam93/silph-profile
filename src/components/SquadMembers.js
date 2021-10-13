@@ -5,6 +5,7 @@ import { Button } from "@chakra-ui/button";
 import { Flex } from "@chakra-ui/layout";
 import { Text } from "@chakra-ui/layout";
 import { tData } from "./Navbar";
+import Loader from "./Loader";
 
 const SquadMembers = ({ squadz }) => {
   const [teams, setTeams] = useRecoilState(tData);
@@ -66,7 +67,11 @@ const SquadMembers = ({ squadz }) => {
   ));
   return (
     <>
-      {loading && <div className="load"></div>}
+      {loading && (
+        <>
+          <Loader />
+        </>
+      )}
       <Flex wrap="wrap" maxW="900px" m="auto" justify="center">
         {squadMap}
       </Flex>
