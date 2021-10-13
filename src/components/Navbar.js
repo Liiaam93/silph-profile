@@ -75,9 +75,10 @@ const Navbar = () => {
             ml="5px"
             mr="5px"
             fontSize="sm"
+            background="gold"
             _hover={{
-              background: "gold",
-              color: "white",
+              background: "white",
+              color: "black",
             }}
             onClick={() => loadSquad()}
           >
@@ -97,9 +98,10 @@ const Navbar = () => {
             ml="5px"
             mr="5px"
             fontSize="sm"
+            background="gold"
             _hover={{
-              background: "gold",
-              color: "white",
+              background: "white",
+              color: "black",
             }}
             onClick={() => loadPeople()}
             id="pbtn"

@@ -22,11 +22,11 @@ const Loader = () => {
         zIndex="modal"
       >
         <MotionBox
-          animate={{ color: ["#ffff00", "#000", "#ffff00"] }}
+          animate={{ color: ["#ffd700", "#000", "#ffd700"] }}
           transition={{ duration: 2.5, repeat: Infinity }}
         >
           <Text align="center" fontSize="30px">
-            LOADING
+            Searching...
           </Text>
         </MotionBox>{" "}
       </Box>
