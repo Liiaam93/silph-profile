@@ -70,7 +70,9 @@ const Teams = ({ trainerData }) => {
           `[${team.pokemon.toLowerCase()}].Recommended_Moves`,
           []
         ).map((name) => (
-          <Text fontSize="sm">{name}</Text>
+          <Text color="darkslategrey" fontSize="sm">
+            {name}
+          </Text>
         ))}
       </Flex>
     </>
@@ -95,7 +97,7 @@ const Teams = ({ trainerData }) => {
           {pokemap}
         </Flex>
         <Center>
-          {trainerData[0].wins && "Score:"}
+          {trainerData[0].wins && "Score: "}
           {trainerData[0].wins &&
             trainerData[0].wins + "-" + (3 - trainerData[0].wins)}
         </Center>
