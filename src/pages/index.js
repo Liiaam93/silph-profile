@@ -33,7 +33,6 @@ export default function Home() {
           ))}
         <SquadData squadz={squads} />
         <SquadMembers squadz={squads} />
-        <Text alignSelf="center">Made by Liiiaaam93</Text>
       </Flex>
     </>
   );

@@ -102,22 +102,23 @@ const Navbar = () => {
           </Button>
         </Flex>
         {loading && (
-          <>
-            <MotionBox
-              size="61px"
-              animate={{ rotate: 360 }}
-              transition={{ duration: 1, repeat: Infinity }}
-              border="solid red 20px"
-              bgColor="#000"
-              borderRadius="50%"
-              borderColor=" red red #fff #fff"
-              position="fixed"
-              left="44%"
-              top="30%"
-            />
-          </>
+          <MotionBox
+            size="90px"
+            animate={{ x: [-75, 75, 75, -75, -75], y: [0, 0, 100, 100, 0] }}
+            transition={{ duration: 3, repeat: Infinity }}
+            position="fixed"
+            left="44%"
+            top="30%"
+          >
+            <Image src="/logo.png" />
+          </MotionBox>
         )}
       </HStack>
+      {loading && (
+        <Text position="fixed" left="45%" top="70%">
+          Loading
+        </Text>
+      )}
     </>
   );
 };
