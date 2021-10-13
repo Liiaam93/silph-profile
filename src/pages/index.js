@@ -7,7 +7,7 @@ import Teams from "../components/Teams";
 import Navbar from "../components/Navbar";
 import SquadData from "../components/SquadData";
 import SquadMembers from "../components/SquadMembers";
-import TrainerData from "../components/trainerData";
+import TrainerData from "../components/TrainerData";
 import { tData } from "../components/Navbar";
 import { sData } from "../components/Navbar";
 
