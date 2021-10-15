@@ -4,10 +4,35 @@ import { Center, Flex, Box, Text } from "@chakra-ui/layout";
 import { Image } from "@chakra-ui/image";
 import { Button } from "@chakra-ui/button";
 import { Select } from "@chakra-ui/select";
+import { motion, isValidMotionProp } from "framer-motion";
 
 const Teams = ({ trainerData }) => {
   const [league, setLeague] = useState("default");
   const [moves, setMoves] = useState([]);
+  const [isToggled, setToggle] = useState(false);
+  const [isFlipped, setFlipped] = useState(false);
+
+  let flip = { rotateY: 0 };
+
+  const MotionBox = motion(Flex);
+
+  const flipCard = () => {
+    if (!isFlipped) {
+      flip = { rotateY: 180 };
+      setFlipped(true);
+    } else {
+      flip = { rotateY: -180 };
+      setFlipped(false);
+    }
+  };
+
+  const toggleData = () => {
+    if (!isToggled) {
+      setToggle(true);
+    } else {
+      setToggle(false);
+    }
+  };
 
   if (!trainerData) {
     return null;
@@ -44,7 +69,7 @@ const Teams = ({ trainerData }) => {
 
   let pokemap = trainerData.slice(1).map((team, index) => (
     <>
-      <Flex
+      <MotionBox
         m="5px"
         bg="cadetblue"
         border="1px solid black"
@@ -53,6 +78,8 @@ const Teams = ({ trainerData }) => {
         textAlign="center"
         alignItems="center"
         minW="150px"
+        transform={flip}
+        onClick={() => flipCard()}
       >
         <Image
           border="1px"
@@ -63,18 +90,35 @@ const Teams = ({ trainerData }) => {
           pl="15px"
           pr="15px"
           src={team.sprite}
+          //onClick={toggleData}
         />
-        <Text fontSize="md">{team.pokemon}</Text>
-        {get(
-          moves,
-          `[${team.pokemon.toLowerCase()}].Recommended_Moves`,
-          []
-        ).map((name) => (
-          <Text color="darkslategrey" fontSize="sm">
-            {name}
+        {!isToggled && <Text fontSize="md">{team.pokemon}</Text>}
+        {isToggled && league != "default" && (
+          <Text fontSize="md">
+            Counters:
+            {get(moves, `[${team.pokemon.toLowerCase()}].counters`, []).map(
+              (mon) => (
+                <Text color="darkslategrey" fontSize="sm">
+                  {mon.opponent}
+                </Text>
+              )
+            )}
           </Text>
-        ))}
-      </Flex>
+        )}
+        {!isToggled && (
+          <>
+            {get(
+              moves,
+              `[${team.pokemon.toLowerCase()}].Recommended_Moves`,
+              []
+            ).map((name) => (
+              <Text color="darkslategrey" fontSize="sm">
+                {name}
+              </Text>
+            ))}
+          </>
+        )}
+      </MotionBox>
     </>
   ));
   return (
