@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
-import { get } from "lodash";
+import { get, transform } from "lodash";
 import { Center, Flex, Box, Text } from "@chakra-ui/layout";
 import { Image } from "@chakra-ui/image";
 import { Button } from "@chakra-ui/button";
 import { Select } from "@chakra-ui/select";
-import { motion, isValidMotionProp } from "framer-motion";
+import { motion, isValidMotionProp, animate } from "framer-motion";
 
 const Teams = ({ trainerData }) => {
   const [league, setLeague] = useState("default");
@@ -12,19 +12,15 @@ const Teams = ({ trainerData }) => {
   const [isToggled, setToggle] = useState(false);
   const [isFlipped, setFlipped] = useState(false);
 
-  let flip = { rotateY: 0 };
-
-  const MotionBox = motion(Flex);
-
-  const flipCard = () => {
+  const flip = () => {
     if (!isFlipped) {
-      flip = { rotateY: 180 };
       setFlipped(true);
     } else {
-      flip = { rotateY: -180 };
       setFlipped(false);
     }
   };
+
+  const MotionBox = motion(Flex);
 
   const toggleData = () => {
     if (!isToggled) {
@@ -70,6 +66,7 @@ const Teams = ({ trainerData }) => {
   let pokemap = trainerData.slice(1).map((team, index) => (
     <>
       <MotionBox
+        key={index + 1}
         m="5px"
         bg="cadetblue"
         border="1px solid black"
@@ -78,8 +75,8 @@ const Teams = ({ trainerData }) => {
         textAlign="center"
         alignItems="center"
         minW="150px"
-        transform={flip}
-        onClick={() => flipCard()}
+        onClick={() => flip()}
+        animate={isFlipped && { rotateY: 180 }}
       >
         <Image
           border="1px"
