@@ -45,7 +45,7 @@ export const getTeam = async (team) => {
 
     const playerStats = [];
     let j = 0;
-    for (let i = 0; i < 8; i++) {
+    for (let i = 0; i < 9; i++) {
       const team = [];
       for (j; j < i + 1; j++) {
         team.push({
