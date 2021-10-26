@@ -151,8 +151,8 @@ const Teams = ({ trainerData }) => {
             <option value="Great">Great</option>
             <option value="Ultra">Ultra</option>
             <option value="Master">Master</option>
-            <option value="Dungeon">Dungeon</option>
-            <option value="Nightfall">Nightfall</option>
+            <option value="Comet">Comet</option>
+            <option value="Twilight">Twilight</option>
           </Select>
         </Center>
         <Center pt="5px" pb="5px">
