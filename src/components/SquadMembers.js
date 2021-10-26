@@ -72,7 +72,7 @@ const SquadMembers = ({ squadz }) => {
           <Loader />
         </>
       )}
-      <Flex wrap="wrap" maxW="900px" m="auto" justify="center">
+      <Flex wrap="wrap" maxW="800px" m="auto" justify="center">
         {squadMap}
       </Flex>
     </>
