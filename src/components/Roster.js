@@ -24,7 +24,7 @@ const Roster = ({ roster }) => {
 
   return (
     <>
-      <Button bg="gold" m="auto" mt="10px" w="40%" onClick={onOpen}>
+      <Button bg="gold" m="auto" mt="10px" maxW="50%" onClick={onOpen}>
         See Player's Full Roster
       </Button>
       <Modal isOpen={isOpen} onClose={onClose}>
