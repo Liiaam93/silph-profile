@@ -24,13 +24,15 @@ const Roster = ({ roster }) => {
 
   return (
     <>
-      <Button m="auto" mt="10px" w="40%" onClick={onOpen}>
+      <Button bg="gold" m="auto" mt="10px" w="40%" onClick={onOpen}>
         See Player's Full Roster
       </Button>
       <Modal isOpen={isOpen} onClose={onClose}>
         <ModalOverlay />
-        <ModalContent>
-          <ModalHeader>{trainerData.playername}'s Roster</ModalHeader>
+        <ModalContent bg="white">
+          <ModalHeader align="center">
+            {trainerData.playername}'s Roster
+          </ModalHeader>
           <ModalCloseButton />
           <ModalBody>
             <Flex wrap="wrap" dir="row">
