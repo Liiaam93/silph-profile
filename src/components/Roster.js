@@ -44,6 +44,7 @@ const Roster = ({ roster }) => {
                       {mon[0].pokemon
                         .replace("alolan", "a")
                         .replace("defense", "d")
+                        .replace("_standard", "")
                         .replace("galarian", "g")
                         .replace("altered", "a")
                         .replace("armored", "a")
