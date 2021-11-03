@@ -8,6 +8,7 @@ import Navbar from "../components/Navbar";
 import SquadData from "../components/SquadData";
 import SquadMembers from "../components/SquadMembers";
 import TrainerData from "../components/TrainerData";
+import Roster from "../components/Roster";
 import { tData } from "../components/Navbar";
 import { sData } from "../components/Navbar";
 
@@ -27,6 +28,7 @@ export default function Home() {
         bgColor="#414141"
       >
         {trainerData.avatar && <TrainerData />}
+        {trainerData.avatar && <Roster roster={trainerData.roster} />}
         {trainerData.teams &&
           trainerData.teams.map((team) => (
             <Teams key={team.title} trainerData={team} />

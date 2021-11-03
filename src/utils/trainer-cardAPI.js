@@ -1,6 +1,23 @@
 import fetch from "isomorphic-fetch";
 import cheerio from "cheerio";
 
+Array.prototype.byCount = function () {
+  var itm,
+    a = [],
+    L = this.length,
+    o = {};
+  for (var i = 0; i < L; i++) {
+    itm = this[i];
+    if (!itm) continue;
+    if (o[itm] == undefined) o[itm] = 1;
+    else ++o[itm];
+  }
+  for (var p in o) a[a.length] = p;
+  return a.sort(function (a, b) {
+    return o[b] - o[a];
+  });
+};
+
 export const getTrainerInfo = async (player) => {
   try {
     const req = await fetch("https://thesilphroad.com/card/u/" + player);
@@ -19,13 +36,8 @@ export const getTrainerInfo = async (player) => {
     )
       .find("img")
       .toArray()
-      .map((element) => $(element).attr("src"));
+      .map((element) => $(element).attr("src").replace("assets.", ""));
 
-    for (let i = 0; i < 6; i++) {
-      sprite.push(
-        "https://cdn.iconscout.com/icon/premium/png-256-thumb/pokeball-games-video-casino-gamer-1-42381.png"
-      );
-    }
     let cupInfo = $(
       "#networkAndAchievements > div.arenaHistory.cardBlock > div.content > div.display.bouts > div.tournament > div > div.overview"
     )
@@ -113,6 +125,9 @@ export const getTrainerInfo = async (player) => {
       points = points + parseInt(wins[i]);
     }
 
+    let common = pokemon.byCount();
+    let commonS = sprite.byCount();
+
     const silphAPI = `https://sil.ph/${player}.json`;
     const dat = await fetch(silphAPI);
     const json = await dat.json();
@@ -125,7 +140,12 @@ export const getTrainerInfo = async (player) => {
       playername: playerName,
       avatar: avatar,
       teams: [],
+      roster: [],
     };
+
+    for (let i = 0; i < common.length; i++) {
+      response.roster.push([{ pokemon: common[i], sprite: commonS[i] }]);
+    }
     let j = 0;
     for (let i = 0; i < numOfTeams; i++) {
       let team = [{ bout: cupInfo[i], wins: wins[i], role: role[i] }];
@@ -138,43 +158,15 @@ export const getTrainerInfo = async (player) => {
       response.teams.push(team);
     }
 
-    Array.prototype.byCount = function () {
-      var itm,
-        a = [],
-        L = this.length,
-        o = {};
-      for (var i = 0; i < L; i++) {
-        itm = this[i];
-        if (!itm) continue;
-        if (o[itm] == undefined) o[itm] = 1;
-        else ++o[itm];
-      }
-      for (var p in o) a[a.length] = p;
-      return a.sort(function (a, b) {
-        return o[b] - o[a];
-      });
-    };
-
-    let common = pokemon.byCount();
-    let commonS = sprite.byCount();
-    var cmn = commonS.filter(function (spr) {
-      return (
-        spr !==
-        "https://cdn.iconscout.com/icon/premium/png-256-thumb/pokeball-games-video-casino-gamer-1-42381.png"
-      );
-    });
-
-    const popular = [];
+    const popular = [{ bout: "Most Frequently Used Pokemon" }];
     for (let k = 0; k < 6; k++) {
       popular.push({
-        bout: "Most Frequently Used Pokemon",
         pokemon: common[k],
-        sprite: cmn[k],
+        sprite: commonS[k],
       });
     }
 
-    response.teams.push(popular);
-    console.log(avatar);
+    response.teams.unshift(popular);
     return response;
   } catch (err) {
     console.log(err.message);

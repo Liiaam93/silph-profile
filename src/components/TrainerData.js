@@ -35,7 +35,6 @@ const TrainerData = () => {
           <Text> {trainerData.winrate}% </Text>
         </Flex>
       </Flex>
-      )
     </>
   );
 };
