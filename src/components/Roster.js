@@ -48,6 +48,9 @@ const Roster = ({ roster }) => {
                         .replace("_armored", "-A")
                         .replace("_trash", "-T")
                         .replace("_standard", "")
+                        .replace("_rainy", "-Rain")
+                        .replace("_sunny", "-Sun")
+                        .replace("_snowy", "-Snow")
                         .replace("_origin", "-O")
                         .replace("_shadow", "-S")
                         .replace("_alolan", "-A")}
