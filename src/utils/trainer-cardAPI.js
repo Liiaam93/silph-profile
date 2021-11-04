@@ -1,23 +1,6 @@
 import fetch from "isomorphic-fetch";
 import cheerio from "cheerio";
 
-Array.prototype.byCount = function () {
-  var itm,
-    a = [],
-    L = this.length,
-    o = {};
-  for (var i = 0; i < L; i++) {
-    itm = this[i];
-    if (!itm) continue;
-    if (o[itm] == undefined) o[itm] = 1;
-    else ++o[itm];
-  }
-  for (var p in o) a[a.length] = p;
-  return a.sort(function (a, b) {
-    return o[b] - o[a];
-  });
-};
-
 export const getTrainerInfo = async (player) => {
   try {
     const req = await fetch("https://thesilphroad.com/card/u/" + player);
@@ -66,6 +49,7 @@ export const getTrainerInfo = async (player) => {
         sprite.splice(i, 1);
       }
     }
+
     let k = 0;
     for (k; k < pokemon.length; k++) {
       if (pokemon[k].includes("Galarian")) {
@@ -116,6 +100,7 @@ export const getTrainerInfo = async (player) => {
         pokemon[k] = pokemon[k].trim();
       }
     }
+
     const numOfTeams = pokemon.length / 6;
 
     let points = 0;
@@ -124,9 +109,6 @@ export const getTrainerInfo = async (player) => {
     for (let i = 0; i < numOfTeams; i++) {
       points = points + parseInt(wins[i]);
     }
-
-    let common = pokemon.byCount();
-    let commonS = sprite.byCount();
 
     const silphAPI = `https://sil.ph/${player}.json`;
     const dat = await fetch(silphAPI);
@@ -143,9 +125,6 @@ export const getTrainerInfo = async (player) => {
       roster: [],
     };
 
-    for (let i = 0; i < common.length; i++) {
-      response.roster.push([{ pokemon: common[i], sprite: commonS[i] }]);
-    }
     let j = 0;
     for (let i = 0; i < numOfTeams; i++) {
       let team = [{ bout: cupInfo[i], wins: wins[i], role: role[i] }];
@@ -158,15 +137,35 @@ export const getTrainerInfo = async (player) => {
       response.teams.push(team);
     }
 
-    const popular = [{ bout: "Most Frequently Used Pokemon" }];
-    for (let k = 0; k < 6; k++) {
-      popular.push({
-        pokemon: common[k],
-        sprite: commonS[k],
-      });
+    let mons = [];
+    for (let i = 0; i < pokemon.length; i++) {
+      let poke = { pokemon: pokemon[i], sprite: sprite[i] };
+      mons.push(poke);
     }
 
+    const repeatedItems = {};
+    mons.forEach((item) => {
+      if (repeatedItems[item.pokemon]) {
+        repeatedItems[item.pokemon] = {
+          ...item,
+          count: repeatedItems[item.pokemon].count + 1,
+        };
+      } else {
+        repeatedItems[item.pokemon] = { ...item, count: 1 };
+      }
+    });
+    const sortedArr = Object.values(repeatedItems)
+      .sort((b, a) => a.count - b.count)
+      .map((item) => ({ pokemon: item.pokemon, sprite: item.sprite }));
+
+    const popular = [{ bout: "Most Frequently Used Pokemon" }];
+    for (let k = 0; k < 6; k++) {
+      popular.push(sortedArr[k]);
+    }
     response.teams.unshift(popular);
+
+    response.roster.push(sortedArr);
+
     return response;
   } catch (err) {
     console.log(err.message);

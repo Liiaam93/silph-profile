@@ -21,6 +21,7 @@ const Roster = ({ roster }) => {
   const [trainerData] = useRecoilState(tData);
 
   const { isOpen, onOpen, onClose } = useDisclosure();
+  console.log(roster);
 
   return (
     <>
@@ -36,19 +37,20 @@ const Roster = ({ roster }) => {
           <ModalCloseButton />
           <ModalBody>
             <Flex wrap="wrap" dir="row">
-              {roster.map((mon) => (
+              {roster[0].map((mon) => (
                 <>
                   <VStack w="25%">
-                    <Image src={mon[0].sprite} />{" "}
+                    <Image src={mon.sprite} />{" "}
                     <Text>
-                      {mon[0].pokemon
-                        .replace("alolan", "a")
-                        .replace("defense", "d")
+                      {mon.pokemon
+                        .replace("_galarian", "-G")
+                        .replace("_altered", "-A")
+                        .replace("_armored", "-A")
+                        .replace("_trash", "-T")
                         .replace("_standard", "")
-                        .replace("galarian", "g")
-                        .replace("altered", "a")
-                        .replace("armored", "a")
-                        .replace("shadow", "s")}
+                        .replace("_origin", "-O")
+                        .replace("_shadow", "-S")
+                        .replace("_alolan", "-A")}
                     </Text>
                   </VStack>
                 </>
