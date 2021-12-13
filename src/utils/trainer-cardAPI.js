@@ -35,6 +35,13 @@ export const getTrainerInfo = async (player) => {
       .toArray()
       .map((element) => $(element).text());
 
+    let cupType = $(
+      "#networkAndAchievements > div.arenaHistory.cardBlock > div.content > div.display.bouts > div.tournament > div > div.overview"
+    )
+      .find(".cupType")
+      .toArray()
+      .map((element) => $(element).text());
+
     let wins = $(
       "#networkAndAchievements > div.arenaHistory.cardBlock > div.content > div.display.bouts > div.tournament > div.playerDetails > div.record.weighted > div.win"
     )
@@ -127,7 +134,9 @@ export const getTrainerInfo = async (player) => {
 
     let j = 0;
     for (let i = 0; i < numOfTeams; i++) {
-      let team = [{ bout: cupInfo[i], wins: wins[i], role: role[i] }];
+      let team = [
+        { bout: cupInfo[i], wins: wins[i], role: role[i], cupType: cupType[i] },
+      ];
       for (j; j < (i + 1) * 6; j++) {
         team.push({
           pokemon: pokemon[j],
@@ -142,7 +151,7 @@ export const getTrainerInfo = async (player) => {
       let poke = { pokemon: pokemon[i], sprite: sprite[i] };
       mons.push(poke);
     }
-
+    console.log(mons);
     const repeatedItems = {};
     mons.forEach((item) => {
       if (repeatedItems[item.pokemon]) {

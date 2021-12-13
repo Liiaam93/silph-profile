@@ -136,6 +136,7 @@ const Teams = ({ trainerData }) => {
         <Box w="fit-content" m="auto" textAlign="center">
           <Text fontSize="lg">{trainerData[0].bout}</Text>
           <Text fontSize="md"> {trainerData[0].role}</Text>
+          <Text fontSize="md"> {trainerData[0].cupType}</Text>
         </Box>
         <Flex wrap="wrap" w="auto" m="auto" justify="center">
           {pokemap}
