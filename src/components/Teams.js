@@ -133,6 +133,7 @@ const Teams = ({ trainerData }) => {
         <Box w="fit-content" m="auto" textAlign="center">
           <Text fontSize="lg">{trainerData[0].bout}</Text>
           <Text fontSize="md"> {trainerData[0].role}</Text>
+          <Text fontSize="md"> {trainerData[0].cupType}</Text>
         </Box>
         <Flex wrap="wrap" w="auto" m="auto" justify="center">
           {pokemap}
@@ -148,8 +149,8 @@ const Teams = ({ trainerData }) => {
             <option value="Great">Great</option>
             <option value="Ultra">Ultra</option>
             <option value="Master">Master</option>
-            <option value="Dungeon">Dungeon</option>
-            <option value="Nightfall">Nightfall</option>
+            <option value="Comet">Comet</option>
+            <option value="Twilight">Twilight</option>
           </Select>
         </Center>
         <Center pt="5px" pb="5px">

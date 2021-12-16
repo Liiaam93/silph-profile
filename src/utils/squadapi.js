@@ -18,7 +18,7 @@ export const getTeam = async (team) => {
     ).html();
 
     let players = $("#teamDetails > div.memberList")
-      .find(".member .playerName p")
+      .find(".member .name p")
       .toArray()
       .map((element) => $(element).html());
 
@@ -27,10 +27,22 @@ export const getTeam = async (team) => {
       .toArray()
       .map((element) => $(element).html());
 
+    for (let i = 0; i < 9; i++) {
+      if (players[i] === "&nbsp;") {
+        score.splice(i, 0, "NA");
+      }
+    }
     let matches = $("#teamDetails > div.memberList")
       .find(".member .stats .matchesPlayed")
       .toArray()
       .map((element) => $(element).html());
+
+    for (let i = 0; i < 9; i++) {
+      if (players[i] === "&nbsp;") {
+        matches.splice(i, 0, "NA");
+        players[i] = "N/A";
+      }
+    }
 
     let role = $("#teamDetails > div.memberList")
       .find(".member .specialty h6")
@@ -45,7 +57,7 @@ export const getTeam = async (team) => {
 
     const playerStats = [];
     let j = 0;
-    for (let i = 0; i < 8; i++) {
+    for (let i = 0; i < 9; i++) {
       const team = [];
       for (j; j < i + 1; j++) {
         team.push({
@@ -62,6 +74,7 @@ export const getTeam = async (team) => {
       }
       playerStats.push(team);
     }
+
     const squadz = { playerStats, teamStats };
     return squadz;
   } catch (err) {}

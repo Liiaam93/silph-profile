@@ -3,6 +3,7 @@ import cheerio from "cheerio";
 
 const getMoveData = async (league) => {
   let url = "";
+  let ver = "";
 
   if (league == "Great") {
     url = "all/overall/rankings-1500";
@@ -14,22 +15,31 @@ const getMoveData = async (league) => {
     url = "all/overall/rankings-2500";
   } else if (league == "Master") {
     url = "all/overall/rankings-10000";
+  } else if (league === "Comet") {
+    url = "factions/overall/rankings-1500";
+    ver = "v=1.24.4.1";
+  } else if (league === "Twilight") {
+    url = "twilightfactions/overall/rankings-1500";
+    ver = "v=1.24.4.1";
   }
   try {
-    const req = await fetch(`https://pvpoke.com/data/rankings/${url}.json?`, {
-      headers: {
-        accept: "application/json, text/javascript, */*; q=0.01",
-        "sec-ch-ua":
-          '" Not;A Brand";v="99", "Google Chrome";v="91", "Chromium";v="91"',
-        "sec-ch-ua-mobile": "?0",
-        "x-requested-with": "XMLHttpRequest",
-      },
-      referrer: "https://pvpoke.com/rankings/all/1500/overall/",
-      referrerPolicy: "strict-origin-when-cross-origin",
-      body: null,
-      method: "GET",
-      mode: "cors",
-    });
+    const req = await fetch(
+      `https://pvpoke.com/data/rankings/${url}.json?${ver}`,
+      {
+        headers: {
+          accept: "application/json, text/javascript, */*; q=0.01",
+          "sec-ch-ua":
+            '" Not;A Brand";v="99", "Google Chrome";v="91", "Chromium";v="91"',
+          "sec-ch-ua-mobile": "?0",
+          "x-requested-with": "XMLHttpRequest",
+        },
+        referrer: "https://pvpoke.com/rankings/all/1500/overall/",
+        referrerPolicy: "strict-origin-when-cross-origin",
+        body: null,
+        method: "GET",
+        mode: "cors",
+      }
+    );
 
     const data = await req.json();
 

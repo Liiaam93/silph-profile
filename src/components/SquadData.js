@@ -13,7 +13,8 @@ const SquadData = ({ squadz }) => {
   return (
     <>
       <Flex
-        m="auto"
+        m="3px"
+        alignSelf="center"
         mt="10px"
         align="center"
         w="fit-content"

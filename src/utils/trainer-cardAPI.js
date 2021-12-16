@@ -19,13 +19,8 @@ export const getTrainerInfo = async (player) => {
     )
       .find("img")
       .toArray()
-      .map((element) => $(element).attr("src"));
+      .map((element) => $(element).attr("src").replace("assets.", ""));
 
-    for (let i = 0; i < 6; i++) {
-      sprite.push(
-        "https://cdn.iconscout.com/icon/premium/png-256-thumb/pokeball-games-video-casino-gamer-1-42381.png"
-      );
-    }
     let cupInfo = $(
       "#networkAndAchievements > div.arenaHistory.cardBlock > div.content > div.display.bouts > div.tournament > div > div.overview"
     )
@@ -37,6 +32,13 @@ export const getTrainerInfo = async (player) => {
       "#networkAndAchievements > div.arenaHistory.cardBlock > div.content > div.display.bouts > div.tournament > div > div.overview"
     )
       .find("p")
+      .toArray()
+      .map((element) => $(element).text());
+
+    let cupType = $(
+      "#networkAndAchievements > div.arenaHistory.cardBlock > div.content > div.display.bouts > div.tournament > div > div.overview"
+    )
+      .find(".cupType")
       .toArray()
       .map((element) => $(element).text());
 
@@ -54,6 +56,7 @@ export const getTrainerInfo = async (player) => {
         sprite.splice(i, 1);
       }
     }
+
     let k = 0;
     for (k; k < pokemon.length; k++) {
       if (pokemon[k].includes("Galarian")) {
@@ -104,6 +107,7 @@ export const getTrainerInfo = async (player) => {
         pokemon[k] = pokemon[k].trim();
       }
     }
+
     const numOfTeams = pokemon.length / 6;
 
     let points = 0;
@@ -125,10 +129,14 @@ export const getTrainerInfo = async (player) => {
       playername: playerName,
       avatar: avatar,
       teams: [],
+      roster: [],
     };
+
     let j = 0;
     for (let i = 0; i < numOfTeams; i++) {
-      let team = [{ bout: cupInfo[i], wins: wins[i], role: role[i] }];
+      let team = [
+        { bout: cupInfo[i], wins: wins[i], role: role[i], cupType: cupType[i] },
+      ];
       for (j; j < (i + 1) * 6; j++) {
         team.push({
           pokemon: pokemon[j],
@@ -138,43 +146,35 @@ export const getTrainerInfo = async (player) => {
       response.teams.push(team);
     }
 
-    Array.prototype.byCount = function () {
-      var itm,
-        a = [],
-        L = this.length,
-        o = {};
-      for (var i = 0; i < L; i++) {
-        itm = this[i];
-        if (!itm) continue;
-        if (o[itm] == undefined) o[itm] = 1;
-        else ++o[itm];
-      }
-      for (var p in o) a[a.length] = p;
-      return a.sort(function (a, b) {
-        return o[b] - o[a];
-      });
-    };
-
-    let common = pokemon.byCount();
-    let commonS = sprite.byCount();
-    var cmn = commonS.filter(function (spr) {
-      return (
-        spr !==
-        "https://cdn.iconscout.com/icon/premium/png-256-thumb/pokeball-games-video-casino-gamer-1-42381.png"
-      );
-    });
-
-    const popular = [];
-    for (let k = 0; k < 6; k++) {
-      popular.push({
-        bout: "Most Frequently Used Pokemon",
-        pokemon: common[k],
-        sprite: cmn[k],
-      });
+    let mons = [];
+    for (let i = 0; i < pokemon.length; i++) {
+      let poke = { pokemon: pokemon[i], sprite: sprite[i] };
+      mons.push(poke);
     }
+    console.log(mons);
+    const repeatedItems = {};
+    mons.forEach((item) => {
+      if (repeatedItems[item.pokemon]) {
+        repeatedItems[item.pokemon] = {
+          ...item,
+          count: repeatedItems[item.pokemon].count + 1,
+        };
+      } else {
+        repeatedItems[item.pokemon] = { ...item, count: 1 };
+      }
+    });
+    const sortedArr = Object.values(repeatedItems)
+      .sort((b, a) => a.count - b.count)
+      .map((item) => ({ pokemon: item.pokemon, sprite: item.sprite }));
 
-    response.teams.push(popular);
-    console.log(avatar);
+    const popular = [{ bout: "Most Frequently Used Pokemon" }];
+    for (let k = 0; k < 6; k++) {
+      popular.push(sortedArr[k]);
+    }
+    response.teams.unshift(popular);
+
+    response.roster.push(sortedArr);
+
     return response;
   } catch (err) {
     console.log(err.message);
