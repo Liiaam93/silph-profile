@@ -11,6 +11,7 @@ import TrainerData from "../components/TrainerData";
 import Roster from "../components/Roster";
 import { tData } from "../components/Navbar";
 import { sData } from "../components/Navbar";
+import { Link } from "@chakra-ui/react";
 
 export default function Home() {
   const [trainerData] = useRecoilState(tData);
@@ -27,6 +28,22 @@ export default function Home() {
         alignContent="center"
         bgColor="#414141"
       >
+        {!trainerData.avatar && (
+          <Box
+            w="fit-content"
+            border="solid 3px white"
+            m="auto"
+            mt={["8", "0"]}
+            p="10px"
+          >
+            <Text color="white">
+              New and updated site:{" "}
+              <Link color="yellow.500" href="https://silph-scope.vercel.app/">
+                Silph-Scope
+              </Link>
+            </Text>
+          </Box>
+        )}
         {trainerData.avatar && <TrainerData />}
         {trainerData.avatar && <Roster roster={trainerData.roster} />}
         {trainerData.teams &&
